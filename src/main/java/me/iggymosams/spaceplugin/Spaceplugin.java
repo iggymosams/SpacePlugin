@@ -75,6 +75,9 @@ public final class Spaceplugin extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new EquipOxygenMask(), this);
         getServer().getPluginManager().registerEvents(new GUIclickEvent(), this);
         getServer().getPluginManager().registerEvents(new InteractEntity(), this);
+        getServer().getPluginManager().registerEvents(new DeathEvent(), this);
+
+
         Oxygen oxygenMan = new Oxygen();
         oxygenMan.CheckOxygen();
     }

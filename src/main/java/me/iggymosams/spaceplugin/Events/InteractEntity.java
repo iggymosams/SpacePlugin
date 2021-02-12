@@ -2,10 +2,7 @@ package me.iggymosams.spaceplugin.Events;
 
 import me.iggymosams.spaceplugin.Managers.Scoreboard;
 import me.iggymosams.spaceplugin.Spaceplugin;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.EntityEffect;
-import org.bukkit.Location;
+import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -25,6 +22,8 @@ public class InteractEntity implements Listener {
         if(p.getWorld().equals(Spaceplugin.getVoidworld())) {
             if (e.getRightClicked().getType().equals(EntityType.ARMOR_STAND)) {
                 e.setCancelled(true);
+                p.setWalkSpeed(0.2F);
+                p.setGameMode(GameMode.SURVIVAL);
                 if(e.getRightClicked().getName().equals(ChatColor.GREEN +"" +ChatColor.BOLD + "Earth")){
                     Vector pos = e.getRightClicked().getLocation().toVector();
                     Vector target = Bukkit.getPlayer(p.getName()).getLocation().toVector();

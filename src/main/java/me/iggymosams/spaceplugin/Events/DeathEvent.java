@@ -2,11 +2,10 @@ package me.iggymosams.spaceplugin.Events;
 
 import me.iggymosams.spaceplugin.Spaceplugin;
 import org.bukkit.NamespacedKey;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -15,12 +14,12 @@ import org.bukkit.plugin.Plugin;
 
 import java.util.LinkedHashMap;
 
-public class QuitEvent implements Listener {
+public class DeathEvent implements Listener {
     Plugin plugin = Spaceplugin.getPlugin();
     LinkedHashMap<String, Integer> oxygen = Spaceplugin.getPlugin().getOxygen();
     @EventHandler
-    public void onQuit(PlayerQuitEvent e){
-        Player p = e.getPlayer();
+    public void onDeath(PlayerDeathEvent e){
+        Player p = e.getEntity();
         if(oxygen.containsKey(p.getName())){
             ItemStack i = p.getInventory().getHelmet();
             ItemMeta im = i.getItemMeta();
