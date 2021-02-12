@@ -28,7 +28,8 @@ public class VoidTPCommand implements CommandExecutor {
             p.teleport(new Location(voidworld, 3.5, 80, 0.5));
             World w = p.getWorld();
             w.setDifficulty(Difficulty.PEACEFUL);
-            p.setWalkSpeed(0.2F);
+            //p.setWalkSpeed(0.2F);
+            p.setWalkSpeed(0f);
         }
         return true;
     }

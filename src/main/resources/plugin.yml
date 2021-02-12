@@ -4,7 +4,7 @@ main: me.iggymosams.spaceplugin.Spaceplugin
 api-version: 1.16
 authors: [ iggyomsams ]
 description: A Space Plugin
-depend: [ArmorEquipEvent]
+depend: [ArmorEquipEvent, ProtocolLib]
 commands:
   dimension:
     usage: /<command>

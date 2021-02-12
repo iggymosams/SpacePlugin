@@ -26,7 +26,6 @@ public class InteractEntity implements Listener {
             if (e.getRightClicked().getType().equals(EntityType.ARMOR_STAND)) {
                 e.setCancelled(true);
                 if(e.getRightClicked().getName().equals(ChatColor.GREEN +"" +ChatColor.BOLD + "Earth")){
-
                     Vector pos = e.getRightClicked().getLocation().toVector();
                     Vector target = Bukkit.getPlayer(p.getName()).getLocation().toVector();
                     Vector velocity = target.subtract(pos);

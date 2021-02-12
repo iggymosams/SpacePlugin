@@ -1,5 +1,7 @@
 package me.iggymosams.spaceplugin;
 
+import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.ProtocolManager;
 import me.iggymosams.spaceplugin.Commands.*;
 import me.iggymosams.spaceplugin.Events.*;
 import me.iggymosams.spaceplugin.Managers.EmptyWorldGenerator;
@@ -14,6 +16,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 public final class Spaceplugin extends JavaPlugin {
+
+    private static ProtocolManager protocolManager;
 
     private static Spaceplugin plugin;
     private static World moon;
@@ -36,11 +40,17 @@ public final class Spaceplugin extends JavaPlugin {
         return voidworld;
     }
 
+    public static ProtocolManager getProtocolManager() {
+        return protocolManager;
+    }
+
     @Override
     public void onEnable() {
 
         plugin = this;
-        // Plugin startup logic
+
+        protocolManager = ProtocolLibrary.getProtocolManager();
+
         WorldCreator moonCreator = new WorldCreator("moon");
         moonCreator.generator(new MoonGenerator(moonCreator.seed()));
         moon = moonCreator.createWorld();

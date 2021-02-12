@@ -37,7 +37,7 @@ public class SetupVoid implements CommandExecutor {
         moon.setItemMeta(moonMeta);
 
 
-        earthas = (ArmorStand) w.spawn(new Location(w, 5.5, 80, 3.5), ArmorStand.class);
+        earthas = (ArmorStand) w.spawn(new Location(w, 5.5, 80, 2.5), ArmorStand.class);
         //earthas.setGravity(false);
         earthas.setVisible(false);
         earthas.setRotation(145, 0);
@@ -45,7 +45,7 @@ public class SetupVoid implements CommandExecutor {
         earthas.setCustomName(ChatColor.GREEN + "" +ChatColor.BOLD + "Earth");
         earthas.getEquipment().setHelmet(earth);
 
-        moonas = (ArmorStand) w.spawn(new Location(w, 1.5, 80, 3.5), ArmorStand.class);
+        moonas = (ArmorStand) w.spawn(new Location(w, 1.5, 80, 2.5), ArmorStand.class);
         //moonas.setGravity(false);
         moonas.setVisible(false);
         moonas.setRotation(-145, 0);

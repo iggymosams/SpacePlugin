@@ -1,6 +1,9 @@
 package me.iggymosams.spaceplugin.Events;
 
 
+import com.comphenix.protocol.PacketType;
+import com.comphenix.protocol.ProtocolManager;
+import com.comphenix.protocol.events.PacketContainer;
 import me.iggymosams.spaceplugin.Spaceplugin;
 import org.bukkit.*;
 import org.bukkit.entity.ArmorStand;
@@ -23,6 +26,7 @@ import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scoreboard.*;
 import org.bukkit.util.Vector;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -31,6 +35,7 @@ import java.util.concurrent.TimeUnit;
 
 public class PlayerMove implements Listener {
 
+    ProtocolManager protocolManager = Spaceplugin.getProtocolManager();
     Plugin plugin = Spaceplugin.getPlugin();
     LinkedHashMap<String, Integer> oxygen = Spaceplugin.getPlugin().getOxygen();
     ArrayList<Player> grav = Spaceplugin.getPlugin().getGravityboots();
@@ -39,7 +44,7 @@ public class PlayerMove implements Listener {
 
     //private final OxygenManager oxygenManager = new OxygenManager();
     @EventHandler
-    public void onPlayerMove(PlayerMoveEvent e) {
+    public void onPlayerMove(PlayerMoveEvent e) throws InvocationTargetException {
         Player p = e.getPlayer();
         World w = e.getFrom().getWorld();
         PlayerInventory i = p.getInventory();
@@ -67,31 +72,31 @@ public class PlayerMove implements Listener {
                     }
                 }
             }
-            if(getLookingAt(p, earth) == true && earthcanmove == true){
-                Vector pos = earth.getLocation().toVector();
-                Vector target = Bukkit.getPlayer(p.getName()).getLocation().toVector();
-                Vector velocity = target.subtract(pos);
-                earth.setVelocity(velocity.normalize().multiply(0.5));
-                earthcanmove = false;
-            }else if(getLookingAt(p, earth) == false && earthcanmove == false){
-                earthcanmove = true;
-                Vector pos = earth.getLocation().toVector();
-                Vector target = Bukkit.getPlayer(p.getName()).getLocation().toVector();
-                Vector velocity = target.subtract(pos);
-                earth.setVelocity(velocity.normalize().multiply(-0.5));
-            }else if(getLookingAt(p, moon) == true && mooncanmove == true){
-                Vector pos = moon.getLocation().toVector();
-                Vector target = Bukkit.getPlayer(p.getName()).getLocation().toVector();
-                Vector velocity = target.subtract(pos);
-                moon.setVelocity(velocity.normalize().multiply(0.5));
-                mooncanmove = false;
-            }else if(getLookingAt(p, moon) == false && mooncanmove == false){
-                mooncanmove = true;
-                Vector pos = moon.getLocation().toVector();
-                Vector target = Bukkit.getPlayer(p.getName()).getLocation().toVector();
-                Vector velocity = target.subtract(pos);
-                moon.setVelocity(velocity.normalize().multiply(-0.5));
-            }
+//            if(getLookingAt(p, earth) == true && earthcanmove == true){
+//                Vector pos = earth.getLocation().toVector();
+//                Vector target = Bukkit.getPlayer(p.getName()).getLocation().toVector();
+//                Vector velocity = target.subtract(pos);
+//                earth.setVelocity(velocity.normalize().multiply(0.5));
+//                earthcanmove = false;
+//            }else if(getLookingAt(p, earth) == false && earthcanmove == false){
+//                earthcanmove = true;
+//                Vector pos = earth.getLocation().toVector();
+//                Vector target = Bukkit.getPlayer(p.getName()).getLocation().toVector();
+//                Vector velocity = target.subtract(pos);
+//                earth.setVelocity(velocity.normalize().multiply(-0.5));
+//            }else if(getLookingAt(p, moon) == true && mooncanmove == true){
+//                Vector pos = moon.getLocation().toVector();
+//                Vector target = Bukkit.getPlayer(p.getName()).getLocation().toVector();
+//                Vector velocity = target.subtract(pos);
+//                moon.setVelocity(velocity.normalize().multiply(0.5));
+//                mooncanmove = false;
+//            }else if(getLookingAt(p, moon) == false && mooncanmove == false){
+//                mooncanmove = true;
+//                Vector pos = moon.getLocation().toVector();
+//                Vector target = Bukkit.getPlayer(p.getName()).getLocation().toVector();
+//                Vector velocity = target.subtract(pos);
+//                moon.setVelocity(velocity.normalize().multiply(-0.5));
+//            }
 
 
 
