@@ -53,6 +53,7 @@ public class SetupVoid implements CommandExecutor {
         moonas.setCustomName(ChatColor.GRAY + "" +ChatColor.BOLD + "Moon");
         moonas.getEquipment().setHelmet(moon);
 
+        w.getBlockAt(new Location(w, 0, 255, 0)).setType(Material.END_GATEWAY);
 
         return true;
     }
