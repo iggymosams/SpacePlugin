@@ -1,0 +1,23 @@
+name: Spaceplugin
+version: ${project.version}
+main: me.iggymosams.spaceplugin.Spaceplugin
+api-version: 1.16
+authors: [ iggyomsams ]
+description: A Space Plugin
+depend: [ArmorEquipEvent]
+commands:
+  dimension:
+    usage: /<command>
+    description: Send you to a dimension
+  equip:
+    usage: /<command>
+    description: Open the Equipment GUI
+  suit:
+    usage: /<command>
+    description: Gives you a SpaceSuit
+  void:
+    usage: /<command>
+    description: Sends you to the void world
+  setup:
+    usage: /<command>
+    description: Sends you to the void world
