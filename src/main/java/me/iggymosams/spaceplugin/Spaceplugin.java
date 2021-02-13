@@ -63,7 +63,8 @@ public final class Spaceplugin extends JavaPlugin {
         this.getCommand("equip").setExecutor(new EquipCommand());
         this.getCommand("suit").setExecutor(new SpaceSuitCommand());
         this.getCommand("void").setExecutor(new VoidTPCommand());
-        this.getCommand("setup").setExecutor(new SetupVoid());
+        this.getCommand("setupvoid").setExecutor(new SetupVoid());
+        this.getCommand("admin").setExecutor(new AdminCommand());
     }
 
     public void RegisterEvents(){
