@@ -20,29 +20,14 @@ public final class Spaceplugin extends JavaPlugin {
     private static ProtocolManager protocolManager;
 
     private static Spaceplugin plugin;
+
     private static World moon;
+
     private static World voidworld;
 
     final LinkedHashMap<String, Integer> oxygen = new LinkedHashMap<>();
 
-    public ArrayList<Player> getGravityboots() {
-        return gravityboots;
-    }
-
     public ArrayList<Player> gravityboots = new ArrayList<>();
-
-    public LinkedHashMap<String, Integer> getOxygen() {
-        return oxygen;
-    }
-
-
-    public static World getVoidworld() {
-        return voidworld;
-    }
-
-    public static ProtocolManager getProtocolManager() {
-        return protocolManager;
-    }
 
     @Override
     public void onEnable() {
@@ -57,26 +42,12 @@ public final class Spaceplugin extends JavaPlugin {
 
         WorldCreator solarSystem = new WorldCreator("void");
         solarSystem.environment(World.Environment.THE_END);
-
         solarSystem.generator(new EmptyWorldGenerator());
-
         voidworld = solarSystem.createWorld();
 
-        this.getCommand("dimension").setExecutor(new TeleportToDimensionCommand(moon));
-        this.getCommand("equip").setExecutor(new EquipCommand());
-        this.getCommand("suit").setExecutor(new SpaceSuitCommand());
-        this.getCommand("void").setExecutor(new VoidTPCommand());
-        this.getCommand("setup").setExecutor(new SetupVoid());
+        RegisterCommands();
 
-        getServer().getPluginManager().registerEvents(new RocketSpawnEvent(), this);
-        getServer().getPluginManager().registerEvents(new PlayerMove(), this);
-        getServer().getPluginManager().registerEvents(new QuitEvent(), this);
-        getServer().getPluginManager().registerEvents(new JoinEvent(), this);
-        getServer().getPluginManager().registerEvents(new EquipOxygenMask(), this);
-        getServer().getPluginManager().registerEvents(new GUIclickEvent(), this);
-        getServer().getPluginManager().registerEvents(new InteractEntity(), this);
-        getServer().getPluginManager().registerEvents(new DeathEvent(), this);
-
+        RegisterEvents();
 
         Oxygen oxygenMan = new Oxygen();
         oxygenMan.CheckOxygen();
@@ -85,7 +56,37 @@ public final class Spaceplugin extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+    }
+
+    public void RegisterCommands(){
+        this.getCommand("dimension").setExecutor(new TeleportToDimensionCommand(moon));
+        this.getCommand("equip").setExecutor(new EquipCommand());
+        this.getCommand("suit").setExecutor(new SpaceSuitCommand());
+        this.getCommand("void").setExecutor(new VoidTPCommand());
+        this.getCommand("setup").setExecutor(new SetupVoid());
+    }
+
+    public void RegisterEvents(){
+        getServer().getPluginManager().registerEvents(new RocketSpawnEvent(), this);
+        getServer().getPluginManager().registerEvents(new PlayerMove(), this);
+        getServer().getPluginManager().registerEvents(new QuitEvent(), this);
+        getServer().getPluginManager().registerEvents(new JoinEvent(), this);
+        getServer().getPluginManager().registerEvents(new EquipOxygenMask(), this);
+        getServer().getPluginManager().registerEvents(new GUIclickEvent(), this);
+        getServer().getPluginManager().registerEvents(new InteractEntity(), this);
+        getServer().getPluginManager().registerEvents(new DeathEvent(), this);
+    }
+
+    public LinkedHashMap<String, Integer> getOxygen() {
+        return oxygen;
+    }
+
+    public static World getVoidworld() {
+        return voidworld;
+    }
+
+    public static ProtocolManager getProtocolManager() {
+        return protocolManager;
     }
 
     public static World getMoon() {

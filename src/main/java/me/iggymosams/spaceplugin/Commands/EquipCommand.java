@@ -17,8 +17,8 @@ import org.bukkit.plugin.Plugin;
 
 public class EquipCommand implements CommandExecutor {
     Inventory inv;
-    Player p;
 
+    Player p;
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {

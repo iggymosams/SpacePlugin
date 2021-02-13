@@ -16,7 +16,9 @@ import java.util.LinkedHashMap;
 
 public class DeathEvent implements Listener {
     Plugin plugin = Spaceplugin.getPlugin();
+
     LinkedHashMap<String, Integer> oxygen = Spaceplugin.getPlugin().getOxygen();
+
     @EventHandler
     public void onDeath(PlayerDeathEvent e){
         Player p = e.getEntity();

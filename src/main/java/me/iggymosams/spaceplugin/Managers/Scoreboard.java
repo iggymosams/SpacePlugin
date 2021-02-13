@@ -15,6 +15,7 @@ import java.util.LinkedHashMap;
 public class Scoreboard {
 
     Plugin plugin = Spaceplugin.getPlugin();
+
     LinkedHashMap<String, Integer> oxygen = Spaceplugin.getPlugin().getOxygen();
 
     public void UpdateScoreboard(Player p){
@@ -23,7 +24,6 @@ public class Scoreboard {
             public void run() {
                 ScoreboardManager m = Bukkit.getScoreboardManager();
                 org.bukkit.scoreboard.Scoreboard b = m.getNewScoreboard();
-
                 Objective o = b.registerNewObjective("Gold", "dummy", ChatColor.translateAlternateColorCodes('&', "&7&lThe Moon"));
                 o.setDisplaySlot(DisplaySlot.SIDEBAR);
                 if(oxygen.containsKey(p.getName())){

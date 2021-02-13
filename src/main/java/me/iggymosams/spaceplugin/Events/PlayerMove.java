@@ -36,13 +36,17 @@ import java.util.concurrent.TimeUnit;
 public class PlayerMove implements Listener {
 
     ProtocolManager protocolManager = Spaceplugin.getProtocolManager();
+
     Plugin plugin = Spaceplugin.getPlugin();
+
     LinkedHashMap<String, Integer> oxygen = Spaceplugin.getPlugin().getOxygen();
-    ArrayList<Player> grav = Spaceplugin.getPlugin().getGravityboots();
+
+    ArrayList<Player> grav = Spaceplugin.getPlugin().gravityboots;
+
     boolean earthcanmove = true;
+
     boolean mooncanmove = true;
 
-    //private final OxygenManager oxygenManager = new OxygenManager();
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent e) throws InvocationTargetException {
         Player p = e.getPlayer();
@@ -59,7 +63,6 @@ public class PlayerMove implements Listener {
             }
         }else if(w == Spaceplugin.getVoidworld()){
             //p.sendMessage("move");
-
             List<Entity> entities =  w.getEntities();
             ArmorStand earth = null;
             ArmorStand moon = null;
@@ -102,8 +105,8 @@ public class PlayerMove implements Listener {
 
         }
     }
-    private boolean getLookingAt(Player player, ArmorStand as)
-    {
+
+    private boolean getLookingAt(Player player, ArmorStand as) {
         Location eye = player.getEyeLocation();
         Vector toEntity = as.getEyeLocation().toVector().subtract(eye.toVector());
         double dot = toEntity.normalize().dot(eye.getDirection());

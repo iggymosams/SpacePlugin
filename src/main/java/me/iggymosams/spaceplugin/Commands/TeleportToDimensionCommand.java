@@ -21,9 +21,10 @@ public class TeleportToDimensionCommand implements CommandExecutor {
 
     World dimension;
 
-
     Plugin plugin = Spaceplugin.getPlugin(Spaceplugin.class);
+
     Scoreboard sb = new Scoreboard();
+
     public TeleportToDimensionCommand(World dimension){
         this.dimension = dimension;
     }

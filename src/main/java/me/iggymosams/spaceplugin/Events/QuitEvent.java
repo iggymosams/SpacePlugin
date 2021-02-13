@@ -16,8 +16,11 @@ import org.bukkit.plugin.Plugin;
 import java.util.LinkedHashMap;
 
 public class QuitEvent implements Listener {
+
     Plugin plugin = Spaceplugin.getPlugin();
+
     LinkedHashMap<String, Integer> oxygen = Spaceplugin.getPlugin().getOxygen();
+    
     @EventHandler
     public void onQuit(PlayerQuitEvent e){
         Player p = e.getPlayer();

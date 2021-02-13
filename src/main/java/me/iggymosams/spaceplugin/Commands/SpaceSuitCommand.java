@@ -19,8 +19,11 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
 
 public class SpaceSuitCommand implements CommandExecutor {
+
     Plugin plugin = Spaceplugin.getPlugin();
+
     Integer oxygen = 30;
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(sender instanceof Player){

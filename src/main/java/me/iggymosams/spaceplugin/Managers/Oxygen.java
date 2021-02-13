@@ -15,9 +15,10 @@ import java.util.LinkedHashMap;
 public final class Oxygen {
 
     Plugin plugin = Spaceplugin.getPlugin();
-    LinkedHashMap<String, Integer> oxygen = Spaceplugin.getPlugin().getOxygen();
-    World moon = Spaceplugin.getMoon();
 
+    LinkedHashMap<String, Integer> oxygen = Spaceplugin.getPlugin().getOxygen();
+
+    World moon = Spaceplugin.getMoon();
 
     public void CheckOxygen(){
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {

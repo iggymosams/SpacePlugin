@@ -23,9 +23,8 @@ import java.util.LinkedHashMap;
 public class EquipOxygenMask implements Listener {
 
     int oxygen;
+
     int taskID;
-
-
 
     Plugin plugin = Spaceplugin.getPlugin();
 

@@ -16,7 +16,9 @@ import static org.bukkit.GameRule.DO_MOB_SPAWNING;
 
 public class SetupVoid implements CommandExecutor {
     ArmorStand earthas;
+
     ArmorStand moonas;
+
     Pig pig;
 
     @Override

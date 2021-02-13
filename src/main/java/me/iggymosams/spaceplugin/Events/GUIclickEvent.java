@@ -21,17 +21,21 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 public class GUIclickEvent implements Listener {
+
     Plugin plugin = Spaceplugin.getPlugin();
+
     LinkedHashMap<String, Integer> oxygen = Spaceplugin.getPlugin().getOxygen();
 
-    ArrayList<Player> gravboots = Spaceplugin.getPlugin().getGravityboots();
+    ArrayList<Player> gravboots = Spaceplugin.getPlugin().gravityboots;
 
     World moon = Spaceplugin.getMoon();
+
     Scoreboard sb = new Scoreboard();
+
     @EventHandler
     public void onEquip(InventoryClickEvent e) {
-        Player p = (Player) e.getWhoClicked();
 
+        Player p = (Player) e.getWhoClicked();
 
         if (e.getView().getTitle().equals("Equipment")) {
             e.setCancelled(true);

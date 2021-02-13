@@ -19,11 +19,15 @@ import java.util.LinkedHashMap;
 
 public class JoinEvent implements Listener{
     Plugin plugin = Spaceplugin.getPlugin();
+
     LinkedHashMap<String, Integer> oxygen = Spaceplugin.getPlugin().getOxygen();
+
     @EventHandler
     public void onJoin(PlayerJoinEvent e){
         Player p = e.getPlayer();
+
         Inventory i = p.getInventory();
+
         if(p.getInventory().getHelmet() != null) {
             if (p.getInventory().getHelmet().getType().equals(Material.LEATHER_HELMET)) {
                 if (p.getInventory().getHelmet().getItemMeta().getDisplayName().equals(ChatColor.BLUE + "Spacesuit Helmet")) {

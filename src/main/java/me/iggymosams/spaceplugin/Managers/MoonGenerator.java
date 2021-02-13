@@ -13,11 +13,13 @@ public class MoonGenerator extends ChunkGenerator {
 
     SimplexOctaveGenerator simplexOctaveGenerator;
 
+    int currentHeight = 50;
+
     public MoonGenerator(long seed){
         simplexOctaveGenerator = new SimplexOctaveGenerator(seed, 4);
         simplexOctaveGenerator.setScale((double) 1 /100);
     }
-    int currentHeight = 50;
+
     @Override
     public ChunkData generateChunkData(World world, Random random, int x, int z, BiomeGrid biome) {
         // Remember this
