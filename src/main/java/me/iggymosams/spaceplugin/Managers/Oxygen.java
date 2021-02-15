@@ -31,19 +31,26 @@ public final class Oxygen {
                         int o = oxygen.get(p.getName()).intValue();
                         if(p.getWorld().equals(moon)){
                             //sb.UpdateScoreboard(p);
+                            if(p.getInventory().getHelmet() == null){
+                                o = 0;
+                            }
                             if(o > 0) {
                                 oxygen.put(p.getName(), o - 1);
+
                                 ItemStack itemStack = p.getInventory().getHelmet();
                                 ItemMeta itemMeta = itemStack.getItemMeta();
                                 itemMeta.setLore(Arrays.asList(ChatColor.WHITE + "" + o + "/" + itemMeta.getPersistentDataContainer().get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenMax"), PersistentDataType.INTEGER)));
                                 itemStack.setItemMeta(itemMeta);
                             }else{
                                 o = 0;
-                                p.damage(5);
-                                ItemStack itemStack = p.getInventory().getHelmet();
-                                ItemMeta itemMeta = itemStack.getItemMeta();
-                                itemMeta.setLore(Arrays.asList(ChatColor.WHITE + "" + o + "/" + itemMeta.getPersistentDataContainer().get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenMax"), PersistentDataType.INTEGER)));
-                                itemStack.setItemMeta(itemMeta);
+                                p.damage(3);
+                                if(p.getInventory().getHelmet() != null){
+                                    ItemStack itemStack = p.getInventory().getHelmet();
+                                    ItemMeta itemMeta = itemStack.getItemMeta();
+                                    itemMeta.setLore(Arrays.asList(ChatColor.WHITE + "" + o + "/" + itemMeta.getPersistentDataContainer().get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenMax"), PersistentDataType.INTEGER)));
+                                    itemStack.setItemMeta(itemMeta);
+                                }
+
                             }
                         }
                     }
