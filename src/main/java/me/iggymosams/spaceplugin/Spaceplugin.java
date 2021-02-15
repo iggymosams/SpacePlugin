@@ -7,8 +7,10 @@ import me.iggymosams.spaceplugin.Events.*;
 import me.iggymosams.spaceplugin.Managers.EmptyWorldGenerator;
 import me.iggymosams.spaceplugin.Managers.MoonGenerator;
 import me.iggymosams.spaceplugin.Managers.Oxygen;
+import me.iggymosams.spaceplugin.Managers.OxygenCollecter;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
+import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -28,6 +30,8 @@ public final class Spaceplugin extends JavaPlugin {
     final LinkedHashMap<String, Integer> oxygen = new LinkedHashMap<>();
 
     public ArrayList<Player> gravityboots = new ArrayList<>();
+
+    public ArrayList<ArmorStand> oxygenCollectors = new ArrayList<>();
 
     @Override
     public void onEnable() {
@@ -51,6 +55,9 @@ public final class Spaceplugin extends JavaPlugin {
 
         Oxygen oxygenMan = new Oxygen();
         oxygenMan.CheckOxygen();
+
+        OxygenCollecter oxygenCollecter = new OxygenCollecter();
+        oxygenCollecter.OxygenCollecter();
     }
 
 
@@ -76,6 +83,7 @@ public final class Spaceplugin extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new GUIclickEvent(), this);
         getServer().getPluginManager().registerEvents(new InteractEntity(), this);
         getServer().getPluginManager().registerEvents(new DeathEvent(), this);
+        getServer().getPluginManager().registerEvents(new BlockPlace(), this);
     }
 
     public LinkedHashMap<String, Integer> getOxygen() {

@@ -13,10 +13,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
+
+import java.util.Arrays;
 
 public class SpaceSuitCommand implements CommandExecutor {
 
@@ -30,10 +33,18 @@ public class SpaceSuitCommand implements CommandExecutor {
             Player p = (Player) sender;
             Inventory i = p.getInventory();
 
+            ItemStack test = new ItemStack(Material.HONEYCOMB_BLOCK);
+            ItemMeta testMeta = test.getItemMeta();
+            testMeta.setDisplayName(ChatColor.LIGHT_PURPLE + "Oxygen Collector");
+            test.setItemMeta(testMeta);
+            i.addItem(test);
+
             ItemStack helm = new ItemStack(Material.LEATHER_HELMET);
             LeatherArmorMeta helmItemMeta = (LeatherArmorMeta) helm.getItemMeta();
             PersistentDataContainer data = helmItemMeta.getPersistentDataContainer();
-            data.set(new NamespacedKey(plugin, "oxygen"), PersistentDataType.INTEGER, oxygen);
+            data.set(new NamespacedKey(plugin, "oxygenRemaining"), PersistentDataType.INTEGER, 0);
+            data.set(new NamespacedKey(plugin, "oxygenMax"), PersistentDataType.INTEGER, 200);
+            helmItemMeta.setLore(Arrays.asList(ChatColor.WHITE + "0/200"));
             helmItemMeta.setDisplayName(ChatColor.BLUE + "Spacesuit Helmet");
             helmItemMeta.addEnchant(Enchantment.LUCK, 1, true);
             helmItemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);

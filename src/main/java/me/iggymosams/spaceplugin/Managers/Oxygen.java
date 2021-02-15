@@ -3,10 +3,12 @@ package me.iggymosams.spaceplugin.Managers;
 import me.iggymosams.spaceplugin.Spaceplugin;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.NamespacedKey;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
 
 import java.util.Arrays;
@@ -33,14 +35,14 @@ public final class Oxygen {
                                 oxygen.put(p.getName(), o - 1);
                                 ItemStack itemStack = p.getInventory().getHelmet();
                                 ItemMeta itemMeta = itemStack.getItemMeta();
-                                itemMeta.setLore(Arrays.asList(ChatColor.WHITE + "" + o + " Oxygen Remaining"));
+                                itemMeta.setLore(Arrays.asList(ChatColor.WHITE + "" + o + "/" + itemMeta.getPersistentDataContainer().get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenMax"), PersistentDataType.INTEGER)));
                                 itemStack.setItemMeta(itemMeta);
                             }else{
                                 o = 0;
                                 p.damage(5);
                                 ItemStack itemStack = p.getInventory().getHelmet();
                                 ItemMeta itemMeta = itemStack.getItemMeta();
-                                itemMeta.setLore(Arrays.asList(ChatColor.WHITE + "" + o + " Oxygen Remaining"));
+                                itemMeta.setLore(Arrays.asList(ChatColor.WHITE + "" + o + "/" + itemMeta.getPersistentDataContainer().get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenMax"), PersistentDataType.INTEGER)));
                                 itemStack.setItemMeta(itemMeta);
                             }
                         }

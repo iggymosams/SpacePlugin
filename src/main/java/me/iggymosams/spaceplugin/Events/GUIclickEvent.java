@@ -4,11 +4,11 @@ import me.iggymosams.spaceplugin.Managers.Scoreboard;
 import me.iggymosams.spaceplugin.Spaceplugin;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -28,6 +28,8 @@ public class GUIclickEvent implements Listener {
 
     ArrayList<Player> gravboots = Spaceplugin.getPlugin().gravityboots;
 
+    ArrayList<ArmorStand> oxygenCo = Spaceplugin.getPlugin().oxygenCollectors;
+
     World moon = Spaceplugin.getMoon();
 
     Scoreboard sb = new Scoreboard();
@@ -46,7 +48,7 @@ public class GUIclickEvent implements Listener {
                         ItemStack item = e.getCurrentItem();
                         ItemMeta itemMeta = item.getItemMeta();
                         PersistentDataContainer data = itemMeta.getPersistentDataContainer();
-                        int current = data.get(new NamespacedKey(plugin, "oxygen"), PersistentDataType.INTEGER);
+                        int current = data.get(new NamespacedKey(plugin, "oxygenRemaining"), PersistentDataType.INTEGER);
                         p.sendMessage(String.valueOf(current));
                         oxygen.put(p.getName(), current);
                         itemMeta.addEnchant(Enchantment.BINDING_CURSE, 1, true);
@@ -191,6 +193,12 @@ public class GUIclickEvent implements Listener {
                 p.setAllowFlight(false);
                 p.setGravity(true);
                 sb.UpdateScoreboard(p);
+            }
+        }
+        else if(e.getView().getTitle().equals("Oxygen Collector")){
+            e.setCancelled(true);
+            if(e.getSlot() == 26){
+
             }
         }
     }
