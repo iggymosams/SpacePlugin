@@ -1,6 +1,7 @@
 package me.iggymosams.spaceplugin.Commands;
 
 import me.iggymosams.spaceplugin.Spaceplugin;
+import me.iggymosams.spaceplugin.api;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
@@ -24,12 +25,14 @@ public class EquipCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(sender instanceof Player){
             p = (Player) sender;
-            //oxygen.setTimer(15);
-            inv = Bukkit.createInventory(null, 54, "Equipment");
-            initializeItems();
+            if(p.hasPermission(api.perm() + ".equip")) {
+                inv = Bukkit.createInventory(null, 54, "Equipment");
+                initializeItems();
 
-
-            p.openInventory(inv);
+                p.openInventory(inv);
+            }else {
+                api.noPermission(p);
+            }
         }
         return true;
     }

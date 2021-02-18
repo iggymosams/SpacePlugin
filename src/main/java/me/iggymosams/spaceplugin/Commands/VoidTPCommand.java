@@ -1,6 +1,7 @@
 package me.iggymosams.spaceplugin.Commands;
 
 import me.iggymosams.spaceplugin.Spaceplugin;
+import me.iggymosams.spaceplugin.api;
 import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -19,13 +20,17 @@ public class VoidTPCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if(sender instanceof Player){
+        if(sender instanceof Player) {
             Player p = (Player) sender;
-            p.setGameMode(GameMode.ADVENTURE);
-            p.teleport(new Location(voidworld, 3.5, 80, 0.5));
-            World w = p.getWorld();
-            w.setDifficulty(Difficulty.PEACEFUL);
-            p.setWalkSpeed(0f);
+            if (p.hasPermission(api.perm() + ".void")) {
+                p.setGameMode(GameMode.ADVENTURE);
+                p.teleport(new Location(voidworld, 3.5, 80, 0.5));
+                World w = p.getWorld();
+                w.setDifficulty(Difficulty.PEACEFUL);
+                p.setWalkSpeed(0f);
+            }else {
+                api.noPermission(p);
+            }
         }
         return true;
     }

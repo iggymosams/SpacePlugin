@@ -1,6 +1,7 @@
 package me.iggymosams.spaceplugin.Commands;
 
 import me.iggymosams.spaceplugin.Spaceplugin;
+import me.iggymosams.spaceplugin.api;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
@@ -29,71 +30,75 @@ public class SpaceSuitCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if(sender instanceof Player){
+        if(sender instanceof Player) {
             Player p = (Player) sender;
-            Inventory i = p.getInventory();
+            if (p.hasPermission(api.perm() + ".suit")) {
+                Inventory i = p.getInventory();
 
-            ItemStack test = new ItemStack(Material.HONEYCOMB_BLOCK);
-            ItemMeta testMeta = test.getItemMeta();
-            testMeta.setDisplayName(ChatColor.LIGHT_PURPLE + "Oxygen Collector");
-            test.setItemMeta(testMeta);
-            i.addItem(test);
+                ItemStack test = new ItemStack(Material.HONEYCOMB_BLOCK);
+                ItemMeta testMeta = test.getItemMeta();
+                testMeta.setDisplayName(ChatColor.LIGHT_PURPLE + "Oxygen Collector");
+                test.setItemMeta(testMeta);
+                i.addItem(test);
 
-            ItemStack helm = new ItemStack(Material.LEATHER_HELMET);
-            LeatherArmorMeta helmItemMeta = (LeatherArmorMeta) helm.getItemMeta();
-            PersistentDataContainer data = helmItemMeta.getPersistentDataContainer();
-            data.set(new NamespacedKey(plugin, "oxygenRemaining"), PersistentDataType.INTEGER, 0);
-            data.set(new NamespacedKey(plugin, "oxygenMax"), PersistentDataType.INTEGER, 200);
-            helmItemMeta.setLore(Arrays.asList(ChatColor.WHITE + "0/200"));
-            helmItemMeta.setDisplayName(ChatColor.BLUE + "Spacesuit Helmet");
-            helmItemMeta.addEnchant(Enchantment.LUCK, 1, true);
-            helmItemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-            helmItemMeta.setUnbreakable(true);
-            helmItemMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
-            helmItemMeta.setColor(Color.WHITE);
-            helm.setItemMeta(helmItemMeta);
+                ItemStack helm = new ItemStack(Material.LEATHER_HELMET);
+                LeatherArmorMeta helmItemMeta = (LeatherArmorMeta) helm.getItemMeta();
+                PersistentDataContainer data = helmItemMeta.getPersistentDataContainer();
+                data.set(new NamespacedKey(plugin, "oxygenRemaining"), PersistentDataType.INTEGER, 0);
+                data.set(new NamespacedKey(plugin, "oxygenMax"), PersistentDataType.INTEGER, 200);
+                helmItemMeta.setLore(Arrays.asList(ChatColor.WHITE + "0/200"));
+                helmItemMeta.setDisplayName(ChatColor.BLUE + "Spacesuit Helmet");
+                helmItemMeta.addEnchant(Enchantment.LUCK, 1, true);
+                helmItemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                helmItemMeta.setUnbreakable(true);
+                helmItemMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
+                helmItemMeta.setColor(Color.WHITE);
+                helm.setItemMeta(helmItemMeta);
 
-            ItemStack chest = new ItemStack(Material.LEATHER_CHESTPLATE);
-            LeatherArmorMeta chestItemMeta = (LeatherArmorMeta) chest.getItemMeta();
-            chestItemMeta.setDisplayName(ChatColor.BLUE + "Spacesuit ChestPlate");
-            chestItemMeta.addEnchant(Enchantment.LUCK, 1, true);
-            chestItemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-            chestItemMeta.setColor(Color.WHITE);
-            chestItemMeta.setUnbreakable(true);
-            chestItemMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
-            chest.setItemMeta(chestItemMeta);
+                ItemStack chest = new ItemStack(Material.LEATHER_CHESTPLATE);
+                LeatherArmorMeta chestItemMeta = (LeatherArmorMeta) chest.getItemMeta();
+                chestItemMeta.setDisplayName(ChatColor.BLUE + "Spacesuit ChestPlate");
+                chestItemMeta.addEnchant(Enchantment.LUCK, 1, true);
+                chestItemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                chestItemMeta.setColor(Color.WHITE);
+                chestItemMeta.setUnbreakable(true);
+                chestItemMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
+                chest.setItemMeta(chestItemMeta);
 
-            ItemStack leggs = new ItemStack(Material.LEATHER_LEGGINGS);
-            LeatherArmorMeta leggsItemMeta = (LeatherArmorMeta) leggs.getItemMeta();
-            leggsItemMeta.setDisplayName(ChatColor.BLUE + "Spacesuit Leggins");
-            leggsItemMeta.setColor(Color.WHITE);
-            leggsItemMeta.addEnchant(Enchantment.LUCK, 1, true);
-            leggsItemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-            leggsItemMeta.setUnbreakable(true);
-            leggsItemMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
-            leggs.setItemMeta(leggsItemMeta);
+                ItemStack leggs = new ItemStack(Material.LEATHER_LEGGINGS);
+                LeatherArmorMeta leggsItemMeta = (LeatherArmorMeta) leggs.getItemMeta();
+                leggsItemMeta.setDisplayName(ChatColor.BLUE + "Spacesuit Leggins");
+                leggsItemMeta.setColor(Color.WHITE);
+                leggsItemMeta.addEnchant(Enchantment.LUCK, 1, true);
+                leggsItemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                leggsItemMeta.setUnbreakable(true);
+                leggsItemMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
+                leggs.setItemMeta(leggsItemMeta);
 
-            ItemStack boots = new ItemStack(Material.LEATHER_BOOTS);
-            LeatherArmorMeta bootsItemMeta = (LeatherArmorMeta) boots.getItemMeta();
-            bootsItemMeta.setDisplayName(ChatColor.BLUE + "Spacesuit Boots");
-            bootsItemMeta.setColor(Color.WHITE);
-            bootsItemMeta.addEnchant(Enchantment.LUCK, 1, true);
-            bootsItemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-            bootsItemMeta.setUnbreakable(true);
-            bootsItemMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
-            boots.setItemMeta(bootsItemMeta);
+                ItemStack boots = new ItemStack(Material.LEATHER_BOOTS);
+                LeatherArmorMeta bootsItemMeta = (LeatherArmorMeta) boots.getItemMeta();
+                bootsItemMeta.setDisplayName(ChatColor.BLUE + "Spacesuit Boots");
+                bootsItemMeta.setColor(Color.WHITE);
+                bootsItemMeta.addEnchant(Enchantment.LUCK, 1, true);
+                bootsItemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                bootsItemMeta.setUnbreakable(true);
+                bootsItemMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
+                boots.setItemMeta(bootsItemMeta);
 
-            ItemStack gravboots = new ItemStack(Material.LEATHER_BOOTS);
-            LeatherArmorMeta gravbootsItemMeta = (LeatherArmorMeta) gravboots.getItemMeta();
-            gravbootsItemMeta.setDisplayName(ChatColor.BLUE + "Gravity Boots");
-            gravbootsItemMeta.setColor(Color.GRAY);
-            gravbootsItemMeta.addEnchant(Enchantment.LUCK, 1, true);
-            gravbootsItemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-            gravbootsItemMeta.setUnbreakable(true);
-            gravbootsItemMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
-            gravboots.setItemMeta(gravbootsItemMeta);
-            p.sendMessage(String.valueOf(p.getWalkSpeed()));
-            i.addItem(helm, chest, leggs, boots, gravboots);
+                ItemStack gravboots = new ItemStack(Material.LEATHER_BOOTS);
+                LeatherArmorMeta gravbootsItemMeta = (LeatherArmorMeta) gravboots.getItemMeta();
+                gravbootsItemMeta.setDisplayName(ChatColor.BLUE + "Gravity Boots");
+                gravbootsItemMeta.setColor(Color.GRAY);
+                gravbootsItemMeta.addEnchant(Enchantment.LUCK, 1, true);
+                gravbootsItemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                gravbootsItemMeta.setUnbreakable(true);
+                gravbootsItemMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
+                gravboots.setItemMeta(gravbootsItemMeta);
+                p.sendMessage(String.valueOf(p.getWalkSpeed()));
+                i.addItem(helm, chest, leggs, boots, gravboots);
+            }else {
+                api.noPermission(p);
+            }
         }
         return true;
     }

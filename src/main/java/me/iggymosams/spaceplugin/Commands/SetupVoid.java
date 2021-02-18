@@ -1,5 +1,6 @@
 package me.iggymosams.spaceplugin.Commands;
 
+import me.iggymosams.spaceplugin.api;
 import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -23,40 +24,45 @@ public class SetupVoid implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        Player p = (Player) sender;
-        World w = p.getWorld();
-        w.setGameRule(DO_MOB_SPAWNING, false);
-        ItemStack earth = new ItemStack(Material.PLAYER_HEAD);
-        SkullMeta earthMeta = (SkullMeta) earth.getItemMeta();
-        earthMeta.setOwningPlayer(Bukkit.getOfflinePlayer("earth"));
-        earthMeta.setDisplayName(ChatColor.GREEN + "Earth");
-        earth.setItemMeta(earthMeta);
+        if (sender instanceof Player) {
+            Player p = (Player) sender;
+            if (p.hasPermission(api.perm() + ".setupvoid")) {
+                World w = p.getWorld();
+                w.setGameRule(DO_MOB_SPAWNING, false);
+                ItemStack earth = new ItemStack(Material.PLAYER_HEAD);
+                SkullMeta earthMeta = (SkullMeta) earth.getItemMeta();
+                earthMeta.setOwningPlayer(Bukkit.getOfflinePlayer("earth"));
+                earthMeta.setDisplayName(ChatColor.GREEN + "Earth");
+                earth.setItemMeta(earthMeta);
 
-        ItemStack moon = new ItemStack(Material.PLAYER_HEAD);
-        SkullMeta moonMeta = (SkullMeta) moon.getItemMeta();
-        moonMeta.setOwningPlayer(Bukkit.getOfflinePlayer("gng2546atc"));
-        moonMeta.setDisplayName(ChatColor.GRAY + "Moon");
-        moon.setItemMeta(moonMeta);
+                ItemStack moon = new ItemStack(Material.PLAYER_HEAD);
+                SkullMeta moonMeta = (SkullMeta) moon.getItemMeta();
+                moonMeta.setOwningPlayer(Bukkit.getOfflinePlayer("gng2546atc"));
+                moonMeta.setDisplayName(ChatColor.GRAY + "Moon");
+                moon.setItemMeta(moonMeta);
 
 
-        earthas = (ArmorStand) w.spawn(new Location(w, 5.5, 80, 2.5), ArmorStand.class);
-        //earthas.setGravity(false);
-        earthas.setVisible(false);
-        earthas.setRotation(145, 0);
-        earthas.setCustomNameVisible(true);
-        earthas.setCustomName(ChatColor.GREEN + "" +ChatColor.BOLD + "Earth");
-        earthas.getEquipment().setHelmet(earth);
+                earthas = (ArmorStand) w.spawn(new Location(w, 5.5, 80, 2.5), ArmorStand.class);
+                //earthas.setGravity(false);
+                earthas.setVisible(false);
+                earthas.setRotation(145, 0);
+                earthas.setCustomNameVisible(true);
+                earthas.setCustomName(ChatColor.GREEN + "" + ChatColor.BOLD + "Earth");
+                earthas.getEquipment().setHelmet(earth);
 
-        moonas = (ArmorStand) w.spawn(new Location(w, 1.5, 80, 2.5), ArmorStand.class);
-        //moonas.setGravity(false);
-        moonas.setVisible(false);
-        moonas.setRotation(-145, 0);
-        moonas.setCustomNameVisible(true);
-        moonas.setCustomName(ChatColor.GRAY + "" +ChatColor.BOLD + "Moon");
-        moonas.getEquipment().setHelmet(moon);
+                moonas = (ArmorStand) w.spawn(new Location(w, 1.5, 80, 2.5), ArmorStand.class);
+                //moonas.setGravity(false);
+                moonas.setVisible(false);
+                moonas.setRotation(-145, 0);
+                moonas.setCustomNameVisible(true);
+                moonas.setCustomName(ChatColor.GRAY + "" + ChatColor.BOLD + "Moon");
+                moonas.getEquipment().setHelmet(moon);
 
-        w.getBlockAt(new Location(w, 0, 255, 0)).setType(Material.END_GATEWAY);
-
+                w.getBlockAt(new Location(w, 0, 255, 0)).setType(Material.END_GATEWAY);
+            }else {
+                api.noPermission(p);
+            }
+        }
         return true;
     }
 }

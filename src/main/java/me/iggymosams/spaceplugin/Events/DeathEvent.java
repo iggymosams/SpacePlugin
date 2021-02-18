@@ -29,6 +29,7 @@ public class DeathEvent implements Listener {
             int remaining = oxygen.get(p.getName()).intValue();
             data.set(new NamespacedKey(plugin, "oxygen"), PersistentDataType.INTEGER, remaining);
             i.setItemMeta(im);
+            p.setGravity(true);
             oxygen.remove(p.getName());
         }
     }

@@ -9,23 +9,18 @@ commands:
   dimension:
     usage: /<command>
     description: Send you to a dimension
-    permission: spaceplugin.dimension
   equip:
     usage: /<command>
     description: Open the Equipment GUI
-    permission: spaceplugin.equip
   suit:
     usage: /<command>
     description: Gives you a SpaceSuit
-    permission: spaceplugin.suit
   void:
     usage: /<command>
     description: Sends you to the void world
-    permission: spaceplugin.void
   setupvoid:
     usage: /<command>
     description: Sends you to the void world
-    permission: spaceplugin.setupvoid
   admin:
     usage: /<command>
     description: Sends you to the void world
