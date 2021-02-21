@@ -50,51 +50,51 @@ public class InteractEntity implements Listener {
         }else{
             if (e.getRightClicked().getType().equals(EntityType.ARMOR_STAND)) {
 
-                if(e.getRightClicked().getPersistentDataContainer().has(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollectorCurrent"), PersistentDataType.INTEGER)){
+                if(e.getRightClicked().getPersistentDataContainer().has(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollectorCurrent"), PersistentDataType.FLOAT)){
 
                     e.setCancelled(true);
                     ItemStack i = e.getPlayer().getInventory().getItemInMainHand();
                     ItemMeta im = i.getItemMeta();
                     if(im.getDisplayName().equals(ChatColor.BLUE + "Spacesuit Helmet")){
                         PersistentDataContainer data = im.getPersistentDataContainer();
-                        int max = data.get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenMax"), PersistentDataType.INTEGER);
-                        int remain = data.get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenRemaining"), PersistentDataType.INTEGER);
-                        int occurrent = e.getRightClicked().getPersistentDataContainer().get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollectorCurrent"), PersistentDataType.INTEGER);
-                        int needed = max - remain;
+                        float max = data.get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenMax"), PersistentDataType.FLOAT);
+                        float remain = data.get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenRemaining"), PersistentDataType.FLOAT);
+                        float occurrent = e.getRightClicked().getPersistentDataContainer().get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollectorCurrent"), PersistentDataType.FLOAT);
+                        float needed = max - remain;
                         if(needed == 0){
                             e.getPlayer().sendMessage(ChatColor.RED + "Helmet is already full");
                         }
                         if (max > remain){
                             if(needed > occurrent){
-                                int give = needed - occurrent;
+                                float give = needed - occurrent;
                                 give = give + remain;
                                 if(give > occurrent){
-                                    int test = give - occurrent;
+                                    float test = give - occurrent;
                                     give = give -test;
-                                    data.set(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenRemaining"), PersistentDataType.INTEGER, (give+remain));
+                                    data.set(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenRemaining"), PersistentDataType.FLOAT, (give+remain));
                                     im.setLore(Arrays.asList(ChatColor.WHITE + "" + (give+remain) + "/"+max));
                                     i.setItemMeta(im);
-                                    e.getRightClicked().getPersistentDataContainer().set(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollectorCurrent"), PersistentDataType.INTEGER, occurrent-give);
+                                    e.getRightClicked().getPersistentDataContainer().set(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollectorCurrent"), PersistentDataType.FLOAT, occurrent-give);
                                 }else{
-                                    data.set(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenRemaining"), PersistentDataType.INTEGER, (give+remain));
+                                    data.set(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenRemaining"), PersistentDataType.FLOAT, (give+remain));
                                     im.setLore(Arrays.asList(ChatColor.WHITE + "" + (give+remain) + "/"+max));
                                     i.setItemMeta(im);
-                                    e.getRightClicked().getPersistentDataContainer().set(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollectorCurrent"), PersistentDataType.INTEGER, occurrent-give);
+                                    e.getRightClicked().getPersistentDataContainer().set(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollectorCurrent"), PersistentDataType.FLOAT, occurrent-give);
                                 }
                             }
                             else if(occurrent > needed){
-                                int give = needed;
-                                data.set(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenRemaining"), PersistentDataType.INTEGER, (give+remain));
+                                float give = needed;
+                                data.set(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenRemaining"), PersistentDataType.FLOAT, (give+remain));
                                 im.setLore(Arrays.asList(ChatColor.WHITE + "" + (give+remain) + "/"+max));
                                 i.setItemMeta(im);
-                                e.getRightClicked().getPersistentDataContainer().set(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollectorCurrent"), PersistentDataType.INTEGER, occurrent-give);
+                                e.getRightClicked().getPersistentDataContainer().set(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollectorCurrent"), PersistentDataType.FLOAT, occurrent-give);
                             }
                             else if(occurrent == needed){
-                                int give = needed;
-                                data.set(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenRemaining"), PersistentDataType.INTEGER, (give+remain));
+                                float give = needed;
+                                data.set(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenRemaining"), PersistentDataType.FLOAT, (give+remain));
                                 im.setLore(Arrays.asList(ChatColor.WHITE + "" + (give+remain) + "/"+max));
                                 i.setItemMeta(im);
-                                e.getRightClicked().getPersistentDataContainer().set(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollectorCurrent"), PersistentDataType.INTEGER, occurrent-give);
+                                e.getRightClicked().getPersistentDataContainer().set(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollectorCurrent"), PersistentDataType.FLOAT, occurrent-give);
                             }
                         }
                     }

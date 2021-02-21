@@ -34,7 +34,7 @@ public class JoinEvent implements Listener{
                     ItemStack item = p.getInventory().getHelmet();
                     ItemMeta itemMeta = item.getItemMeta();
                     PersistentDataContainer data = itemMeta.getPersistentDataContainer();
-                    int current = data.get(new NamespacedKey(plugin, "oxygen"), PersistentDataType.INTEGER);
+                    int current = data.get(new NamespacedKey(plugin, "oxygenRemaining"), PersistentDataType.INTEGER);
                     p.sendMessage(String.valueOf(current));
                     oxygen.put(p.getName(), current);
                 }

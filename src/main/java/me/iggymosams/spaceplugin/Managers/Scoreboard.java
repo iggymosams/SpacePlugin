@@ -16,7 +16,7 @@ public class Scoreboard {
 
     Plugin plugin = Spaceplugin.getPlugin();
 
-    LinkedHashMap<String, Integer> oxygen = Spaceplugin.getPlugin().getOxygen();
+    LinkedHashMap<String, Float> oxygen = Spaceplugin.getPlugin().getOxygen();
 
     public void UpdateScoreboard(Player p){
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
@@ -27,7 +27,7 @@ public class Scoreboard {
                 Objective o = b.registerNewObjective("Gold", "dummy", ChatColor.translateAlternateColorCodes('&', "&7&lThe Moon"));
                 o.setDisplaySlot(DisplaySlot.SIDEBAR);
                 if(oxygen.containsKey(p.getName())){
-                    Score gold = o.getScore(ChatColor.WHITE + "Oxygen: " + ChatColor.GOLD + oxygen.get(p.getName()).intValue());
+                    Score gold = o.getScore(ChatColor.WHITE + "Oxygen: " + ChatColor.GOLD + oxygen.get(p.getName()).floatValue());
                     gold.setScore(1);
                 }else{
                     Score gold = o.getScore(ChatColor.WHITE + "Oxygen: " + ChatColor.GOLD + "0");

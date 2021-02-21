@@ -44,8 +44,8 @@ public class SpaceSuitCommand implements CommandExecutor {
                 ItemStack helm = new ItemStack(Material.LEATHER_HELMET);
                 LeatherArmorMeta helmItemMeta = (LeatherArmorMeta) helm.getItemMeta();
                 PersistentDataContainer data = helmItemMeta.getPersistentDataContainer();
-                data.set(new NamespacedKey(plugin, "oxygenRemaining"), PersistentDataType.INTEGER, 0);
-                data.set(new NamespacedKey(plugin, "oxygenMax"), PersistentDataType.INTEGER, 200);
+                data.set(new NamespacedKey(plugin, "oxygenRemaining"), PersistentDataType.FLOAT, 0F);
+                data.set(new NamespacedKey(plugin, "oxygenMax"), PersistentDataType.FLOAT, 200F);
                 helmItemMeta.setLore(Arrays.asList(ChatColor.WHITE + "0/200"));
                 helmItemMeta.setDisplayName(ChatColor.BLUE + "Spacesuit Helmet");
                 helmItemMeta.addEnchant(Enchantment.LUCK, 1, true);

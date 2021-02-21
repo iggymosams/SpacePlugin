@@ -24,7 +24,7 @@ public class GUIclickEvent implements Listener {
 
     Plugin plugin = Spaceplugin.getPlugin();
 
-    LinkedHashMap<String, Integer> oxygen = Spaceplugin.getPlugin().getOxygen();
+    LinkedHashMap<String, Float> oxygen = Spaceplugin.getPlugin().getOxygen();
 
     ArrayList<Player> gravboots = Spaceplugin.getPlugin().gravityboots;
 
@@ -48,7 +48,7 @@ public class GUIclickEvent implements Listener {
                         ItemStack item = e.getCurrentItem();
                         ItemMeta itemMeta = item.getItemMeta();
                         PersistentDataContainer data = itemMeta.getPersistentDataContainer();
-                        int current = data.get(new NamespacedKey(plugin, "oxygenRemaining"), PersistentDataType.INTEGER);
+                        float current = data.get(new NamespacedKey(plugin, "oxygenRemaining"), PersistentDataType.FLOAT);
                         p.sendMessage(String.valueOf(current));
                         oxygen.put(p.getName(), current);
                         itemMeta.addEnchant(Enchantment.BINDING_CURSE, 1, true);
@@ -62,7 +62,7 @@ public class GUIclickEvent implements Listener {
                         im.removeEnchant(Enchantment.BINDING_CURSE);
                         PersistentDataContainer data = im.getPersistentDataContainer();
                         int remaining = oxygen.get(p.getName()).intValue();
-                        data.set(new NamespacedKey(plugin, "oxygen"), PersistentDataType.INTEGER, remaining);
+                        data.set(new NamespacedKey(plugin, "oxygenRemaining"), PersistentDataType.INTEGER, remaining);
                         oxygen.remove(p.getName());
                         i.setItemMeta(im);
                         p.getInventory().addItem(i);

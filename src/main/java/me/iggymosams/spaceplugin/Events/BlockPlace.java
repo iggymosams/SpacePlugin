@@ -4,6 +4,7 @@ import me.iggymosams.spaceplugin.Managers.OxygenCollecter;
 import me.iggymosams.spaceplugin.Spaceplugin;
 import org.bukkit.*;
 import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Pig;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -35,12 +36,17 @@ public class BlockPlace implements Listener {
                 oc1.getEquipment().setHelmet(new ItemStack(Material.HONEYCOMB_BLOCK));
                 PersistentDataContainer data = oc1.getPersistentDataContainer();
                 data.set(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollector"), PersistentDataType.INTEGER, 100);
-                data.set(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollectorCurrent"), PersistentDataType.INTEGER, 0);
+                data.set(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollectorCurrent"), PersistentDataType.FLOAT, 0F);
                 oc1.setCanPickupItems(false);
                 oc1.setCustomNameVisible(true);
-                oc1.setCustomName(ChatColor.LIGHT_PURPLE + String.valueOf(data.get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollectorCurrent"), PersistentDataType.INTEGER)) + "/" + data.get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollector"), PersistentDataType.INTEGER));
+                oc1.setCustomName(ChatColor.LIGHT_PURPLE + String.valueOf(data.get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollectorCurrent"), PersistentDataType.FLOAT)) + "/" + data.get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollector"), PersistentDataType.INTEGER));
                 oc1.setGravity(false);
                 e.getPlayer().getInventory().removeItem(e.getItemInHand());
+            }
+        }
+        if(e.getBlock().getType().equals(Material.COMPARATOR)){
+            if(e.getItemInHand().getItemMeta().getDisplayName().equals(ChatColor.RED + "Advance Component")){
+                e.setCancelled(true);
             }
         }
     }

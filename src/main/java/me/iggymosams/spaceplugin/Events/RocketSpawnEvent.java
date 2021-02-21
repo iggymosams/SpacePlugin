@@ -27,7 +27,7 @@ public class RocketSpawnEvent implements Listener {
         if(e.getAction().equals(Action.RIGHT_CLICK_BLOCK)){
             if(e.getItem() != null){
                 if(e.getItem().getType().equals(Material.FIREWORK_ROCKET)) {
-                    if (e.getItem().getItemMeta().getDisplayName().equals("Rocket")) {
+                    if (e.getItem().getItemMeta().getDisplayName().equals(ChatColor.RED + "Rocket")) {
                         p.setAllowFlight(true);
                         p.setGravity(false);
                         p.setVelocity(new Vector(0, 1000, 0));

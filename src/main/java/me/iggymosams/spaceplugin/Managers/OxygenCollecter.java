@@ -1,16 +1,15 @@
 package me.iggymosams.spaceplugin.Managers;
 
+import com.comphenix.net.sf.cglib.beans.BulkBean;
 import me.iggymosams.spaceplugin.Spaceplugin;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.NamespacedKey;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class OxygenCollecter {
@@ -29,17 +28,48 @@ public class OxygenCollecter {
                             ArmorStand a = (ArmorStand) ent;
                             PersistentDataContainer data = a.getPersistentDataContainer();
                             if(data.has(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollector"), PersistentDataType.INTEGER)){
-                                if(!a.getCustomName().equals(ChatColor.LIGHT_PURPLE + "Oxygen Collector"))
-                                    if(String.valueOf(data.get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollector"), PersistentDataType.INTEGER)).equals("100")){
-                                        int i = data.get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollectorCurrent"), PersistentDataType.INTEGER);
-                                        if(i == 100){
-                                            a.setCustomName(ChatColor.RED + "100/100");
-                                        }else{
-                                            a.setCustomName(ChatColor.LIGHT_PURPLE + "" + (i + 1) + "/100");
-                                            data.set(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollectorCurrent"), PersistentDataType.INTEGER, (i + 1));
-                                        }
+                                if(w == Bukkit.getWorld("world")){
+                                    if(!a.getCustomName().equals(ChatColor.LIGHT_PURPLE + "Oxygen Collector"))
+                                        if(String.valueOf(data.get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollector"), PersistentDataType.INTEGER)).equals("100")) {
+                                            float i = data.get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollectorCurrent"), PersistentDataType.FLOAT);
+                                            if (i == 100) {
+                                                a.setCustomName(ChatColor.RED + "100/100");
+                                            } else {
+                                                a.setCustomName(ChatColor.LIGHT_PURPLE + "" + (i + 1) + "/100");
+                                                data.set(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollectorCurrent"), PersistentDataType.FLOAT, (i + 1));
+                                            }
 
+                                        }
+                                }else if(w == Bukkit.getWorld("moon")){
+                                    int leaves = 0;
+                                    for(int x = -3; x <= 3; x++){
+                                        for(int z = -3; z <= 3; z++){
+                                            for(int y = -3; y <=3; y++){
+                                                Material material = a.getLocation().add(x,y,z).getBlock().getType();
+                                                if(material == Material.OAK_LEAVES){
+                                                    leaves++;
+                                                }
+                                            }
+                                        }
                                     }
+                                    if(!a.getCustomName().equals(ChatColor.LIGHT_PURPLE + "Oxygen Collector"))
+                                        if(String.valueOf(data.get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollector"), PersistentDataType.INTEGER)).equals("100")) {
+                                            float i = data.get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollectorCurrent"), PersistentDataType.FLOAT);
+                                            if (i >= 100) {
+                                                a.setCustomName(ChatColor.RED + "100/100");
+                                            } else {
+                                                float o = (float) (0.1 * leaves);
+                                                DecimalFormat df = new DecimalFormat("#.#");
+
+
+                                                a.setCustomName(ChatColor.LIGHT_PURPLE + "" + (df.format(i + o)) + "/100");
+                                                data.set(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollectorCurrent"), PersistentDataType.FLOAT, i + o);
+                                                System.out.println(o);
+
+                                            }
+
+                                        }
+                                }
                             }
                         }
                     }

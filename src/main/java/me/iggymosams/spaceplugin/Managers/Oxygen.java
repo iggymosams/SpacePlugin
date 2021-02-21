@@ -18,7 +18,7 @@ public final class Oxygen {
 
     Plugin plugin = Spaceplugin.getPlugin();
 
-    LinkedHashMap<String, Integer> oxygen = Spaceplugin.getPlugin().getOxygen();
+    LinkedHashMap<String, Float> oxygen = Spaceplugin.getPlugin().getOxygen();
 
     World moon = Spaceplugin.getMoon();
 
@@ -28,18 +28,18 @@ public final class Oxygen {
             public void run() {
                 for (Player p : Bukkit.getServer().getOnlinePlayers()){
                     if(oxygen.containsKey(p.getName())){
-                        int o = oxygen.get(p.getName()).intValue();
+                        float o = oxygen.get(p.getName()).floatValue();
                         if(p.getWorld().equals(moon)){
                             //sb.UpdateScoreboard(p);
                             if(p.getInventory().getHelmet() == null){
                                 o = 0;
                             }
                             if(o > 0) {
-                                oxygen.put(p.getName(), o - 1);
+                                oxygen.put(p.getName(), o - 1F);
 
                                 ItemStack itemStack = p.getInventory().getHelmet();
                                 ItemMeta itemMeta = itemStack.getItemMeta();
-                                itemMeta.setLore(Arrays.asList(ChatColor.WHITE + "" + o + "/" + itemMeta.getPersistentDataContainer().get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenMax"), PersistentDataType.INTEGER)));
+                                itemMeta.setLore(Arrays.asList(ChatColor.WHITE + "" + o + "/" + itemMeta.getPersistentDataContainer().get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenMax"), PersistentDataType.FLOAT)));
                                 itemStack.setItemMeta(itemMeta);
                             }else{
                                 o = 0;
@@ -47,7 +47,7 @@ public final class Oxygen {
                                 if(p.getInventory().getHelmet() != null){
                                     ItemStack itemStack = p.getInventory().getHelmet();
                                     ItemMeta itemMeta = itemStack.getItemMeta();
-                                    itemMeta.setLore(Arrays.asList(ChatColor.WHITE + "" + o + "/" + itemMeta.getPersistentDataContainer().get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenMax"), PersistentDataType.INTEGER)));
+                                    itemMeta.setLore(Arrays.asList(ChatColor.WHITE + "" + o + "/" + itemMeta.getPersistentDataContainer().get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenMax"), PersistentDataType.FLOAT)));
                                     itemStack.setItemMeta(itemMeta);
                                 }
 
