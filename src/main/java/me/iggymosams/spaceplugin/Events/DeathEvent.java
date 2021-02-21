@@ -17,7 +17,7 @@ import java.util.LinkedHashMap;
 public class DeathEvent implements Listener {
     Plugin plugin = Spaceplugin.getPlugin();
 
-    LinkedHashMap<String, Integer> oxygen = Spaceplugin.getPlugin().getOxygen();
+    LinkedHashMap<String, Float> oxygen = Spaceplugin.getPlugin().getOxygen();
 
     @EventHandler
     public void onDeath(PlayerDeathEvent e){
@@ -26,8 +26,8 @@ public class DeathEvent implements Listener {
             ItemStack i = p.getInventory().getHelmet();
             ItemMeta im = i.getItemMeta();
             PersistentDataContainer data = im.getPersistentDataContainer();
-            int remaining = oxygen.get(p.getName()).intValue();
-            data.set(new NamespacedKey(plugin, "oxygen"), PersistentDataType.INTEGER, remaining);
+            float remaining = oxygen.get(p.getName()).floatValue();
+            data.set(new NamespacedKey(plugin, "oxygenRemaining"), PersistentDataType.FLOAT, remaining);
             i.setItemMeta(im);
             p.setGravity(true);
             oxygen.remove(p.getName());

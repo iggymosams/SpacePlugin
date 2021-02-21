@@ -20,7 +20,7 @@ import java.util.LinkedHashMap;
 public class JoinEvent implements Listener{
     Plugin plugin = Spaceplugin.getPlugin();
 
-    LinkedHashMap<String, Integer> oxygen = Spaceplugin.getPlugin().getOxygen();
+    LinkedHashMap<String, Float> oxygen = Spaceplugin.getPlugin().getOxygen();
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e){
@@ -34,8 +34,7 @@ public class JoinEvent implements Listener{
                     ItemStack item = p.getInventory().getHelmet();
                     ItemMeta itemMeta = item.getItemMeta();
                     PersistentDataContainer data = itemMeta.getPersistentDataContainer();
-                    int current = data.get(new NamespacedKey(plugin, "oxygenRemaining"), PersistentDataType.INTEGER);
-                    p.sendMessage(String.valueOf(current));
+                    float current = data.get(new NamespacedKey(plugin, "oxygenRemaining"), PersistentDataType.FLOAT);
                     oxygen.put(p.getName(), current);
                 }
             }

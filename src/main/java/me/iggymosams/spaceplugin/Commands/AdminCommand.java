@@ -25,7 +25,7 @@ public class AdminCommand implements CommandExecutor {
 
     Scoreboard sb = new Scoreboard();
 
-    LinkedHashMap<String, Integer> oxygen = Spaceplugin.getPlugin().getOxygen();
+    LinkedHashMap<String, Float> oxygen = Spaceplugin.getPlugin().getOxygen();
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -89,7 +89,7 @@ public class AdminCommand implements CommandExecutor {
                         if(p.hasPermission(api.perm() + ".admin.oxygen")) {
                             if (args.length == 1) {
                                 if (oxygen.containsKey(p.getName())) {
-                                    p.sendMessage("You have " + oxygen.get(p.getName()).intValue() + " oxygen remaining");
+                                    p.sendMessage("You have " + oxygen.get(p.getName()).floatValue() + " oxygen remaining");
                                 } else {
                                     p.sendMessage("You are on Earth and dont need oxygen");
                                 }
@@ -100,7 +100,7 @@ public class AdminCommand implements CommandExecutor {
                                     p.sendMessage(args[1] + " is not online");
                                 } else {
                                     if (oxygen.containsKey(target.getName())) {
-                                        p.sendMessage(args[1] + " has " + oxygen.get(target.getName()).intValue() + "oxygen remaining");
+                                        p.sendMessage(args[1] + " has " + oxygen.get(target.getName()).floatValue() + "oxygen remaining");
                                     } else {
                                         p.sendMessage(args[1] + " is on Earth and dont need oxygen");
                                     }
@@ -115,9 +115,9 @@ public class AdminCommand implements CommandExecutor {
                             ItemStack i = p.getInventory().getItemInMainHand();
                             ItemMeta im = i.getItemMeta();
                             PersistentDataContainer data = im.getPersistentDataContainer();
-                            if (data.has((new NamespacedKey(Spaceplugin.getPlugin(), "oxygenMax")), PersistentDataType.INTEGER)) {
-                                data.set(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenRemaining"), PersistentDataType.INTEGER, data.get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenMax"), PersistentDataType.INTEGER));
-                                im.setLore(Arrays.asList(ChatColor.WHITE + "" + data.get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenRemaining"), PersistentDataType.INTEGER) + "/" + data.get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenMax"), PersistentDataType.INTEGER)));
+                            if (data.has((new NamespacedKey(Spaceplugin.getPlugin(), "oxygenMax")), PersistentDataType.FLOAT)) {
+                                data.set(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenRemaining"), PersistentDataType.FLOAT, data.get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenMax"), PersistentDataType.FLOAT));
+                                im.setLore(Arrays.asList(ChatColor.WHITE + "" + data.get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenRemaining"), PersistentDataType.FLOAT) + "/" + data.get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenMax"), PersistentDataType.FLOAT)));
                                 i.setItemMeta(im);
                             }
                         }else {

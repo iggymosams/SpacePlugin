@@ -39,16 +39,12 @@ public class PlayerMove implements Listener {
 
     Plugin plugin = Spaceplugin.getPlugin();
 
-    LinkedHashMap<String, Integer> oxygen = Spaceplugin.getPlugin().getOxygen();
+    LinkedHashMap<String, Float> oxygen = Spaceplugin.getPlugin().getOxygen();
 
     ArrayList<Player> grav = Spaceplugin.getPlugin().gravityboots;
 
-    boolean earthcanmove = true;
-
-    boolean mooncanmove = true;
-
     @EventHandler
-    public void onPlayerMove(PlayerMoveEvent e) throws InvocationTargetException {
+    public void onPlayerMove(PlayerMoveEvent e) {
         Player p = e.getPlayer();
         World w = e.getFrom().getWorld();
         PlayerInventory i = p.getInventory();
@@ -75,43 +71,6 @@ public class PlayerMove implements Listener {
                     }
                 }
             }
-//            if(getLookingAt(p, earth) == true && earthcanmove == true){
-//                Vector pos = earth.getLocation().toVector();
-//                Vector target = Bukkit.getPlayer(p.getName()).getLocation().toVector();
-//                Vector velocity = target.subtract(pos);
-//                earth.setVelocity(velocity.normalize().multiply(0.5));
-//                earthcanmove = false;
-//            }else if(getLookingAt(p, earth) == false && earthcanmove == false){
-//                earthcanmove = true;
-//                Vector pos = earth.getLocation().toVector();
-//                Vector target = Bukkit.getPlayer(p.getName()).getLocation().toVector();
-//                Vector velocity = target.subtract(pos);
-//                earth.setVelocity(velocity.normalize().multiply(-0.5));
-//            }else if(getLookingAt(p, moon) == true && mooncanmove == true){
-//                Vector pos = moon.getLocation().toVector();
-//                Vector target = Bukkit.getPlayer(p.getName()).getLocation().toVector();
-//                Vector velocity = target.subtract(pos);
-//                moon.setVelocity(velocity.normalize().multiply(0.5));
-//                mooncanmove = false;
-//            }else if(getLookingAt(p, moon) == false && mooncanmove == false){
-//                mooncanmove = true;
-//                Vector pos = moon.getLocation().toVector();
-//                Vector target = Bukkit.getPlayer(p.getName()).getLocation().toVector();
-//                Vector velocity = target.subtract(pos);
-//                moon.setVelocity(velocity.normalize().multiply(-0.5));
-//            }
-
-
-
         }
     }
-
-    private boolean getLookingAt(Player player, ArmorStand as) {
-        Location eye = player.getEyeLocation();
-        Vector toEntity = as.getEyeLocation().toVector().subtract(eye.toVector());
-        double dot = toEntity.normalize().dot(eye.getDirection());
-
-        return dot > 0.99D;
-    }
-
 }

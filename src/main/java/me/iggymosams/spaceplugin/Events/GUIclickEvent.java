@@ -61,8 +61,8 @@ public class GUIclickEvent implements Listener {
                         ItemMeta im = i.getItemMeta();
                         im.removeEnchant(Enchantment.BINDING_CURSE);
                         PersistentDataContainer data = im.getPersistentDataContainer();
-                        int remaining = oxygen.get(p.getName()).intValue();
-                        data.set(new NamespacedKey(plugin, "oxygenRemaining"), PersistentDataType.INTEGER, remaining);
+                        float remaining = oxygen.get(p.getName()).floatValue();
+                        data.set(new NamespacedKey(plugin, "oxygenRemaining"), PersistentDataType.FLOAT, remaining);
                         oxygen.remove(p.getName());
                         i.setItemMeta(im);
                         p.getInventory().addItem(i);

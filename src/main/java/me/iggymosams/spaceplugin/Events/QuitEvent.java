@@ -19,7 +19,7 @@ public class QuitEvent implements Listener {
 
     Plugin plugin = Spaceplugin.getPlugin();
 
-    LinkedHashMap<String, Integer> oxygen = Spaceplugin.getPlugin().getOxygen();
+    LinkedHashMap<String, Float> oxygen = Spaceplugin.getPlugin().getOxygen();
     
     @EventHandler
     public void onQuit(PlayerQuitEvent e){
@@ -28,8 +28,8 @@ public class QuitEvent implements Listener {
             ItemStack i = p.getInventory().getHelmet();
             ItemMeta im = i.getItemMeta();
             PersistentDataContainer data = im.getPersistentDataContainer();
-            int remaining = oxygen.get(p.getName()).intValue();
-            data.set(new NamespacedKey(plugin, "oxygen"), PersistentDataType.INTEGER, remaining);
+            float remaining = oxygen.get(p.getName()).floatValue();
+            data.set(new NamespacedKey(plugin, "oxygen"), PersistentDataType.FLOAT, remaining);
             i.setItemMeta(im);
             oxygen.remove(p.getName());
         }

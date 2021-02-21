@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 
-public final class Spaceplugin<permissionmsg> extends JavaPlugin {
+public final class Spaceplugin extends JavaPlugin {
 
     private static ProtocolManager protocolManager;
 
@@ -31,7 +31,7 @@ public final class Spaceplugin<permissionmsg> extends JavaPlugin {
 
     private static World voidworld;
 
-    final LinkedHashMap<String, Integer> oxygen = new LinkedHashMap<>();
+    final LinkedHashMap<String, Float> oxygen = new LinkedHashMap<>();
 
     public ArrayList<Player> gravityboots = new ArrayList<>();
 
@@ -420,7 +420,7 @@ public final class Spaceplugin<permissionmsg> extends JavaPlugin {
         return recipe;
     }
 
-    public LinkedHashMap<String, Integer> getOxygen() {
+    public LinkedHashMap<String, Float> getOxygen() {
         return oxygen;
     }
 
