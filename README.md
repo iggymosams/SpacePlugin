@@ -1,7 +1,7 @@
 # SpacePlugin
 
 ----
-##To Do
+#To Do
 - [x] Add Tiered Helmet Compatibility
 - [ ] Add Caves to moon
 - [ ] Add Space Station
@@ -11,7 +11,7 @@
 - [ ] Add Gravity Boots Crafting
 - [ ] 
 
-##Crafting
+#Crafting
 
 **Advanced Redstone**
 - 1 Comparator
