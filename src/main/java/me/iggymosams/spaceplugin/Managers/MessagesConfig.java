@@ -44,6 +44,9 @@ public class MessagesConfig {
 
     public static void loadDefaults(){
         MessagesConfig.get().addDefault("noPermission", "&cYou dont have permission");
+        MessagesConfig.get().addDefault("notAPlayer", "&c%target% is not a player");
+        MessagesConfig.get().addDefault("PlayerOnly", "&cYou have to be a player to run this command");
+        MessagesConfig.get().addDefault("SuitPierced", "&cSuit Pierced!");
     }
 }
 

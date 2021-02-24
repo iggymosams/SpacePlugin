@@ -14,4 +14,10 @@ public class api {
     public static String getMessage(String path){
         return ChatColor.translateAlternateColorCodes('&', MessagesConfig.get().getString(path));
     }
+    public static String notPlayer(String target){
+        return api.getMessage("notAPlayer").replace("%target%", target);
+    }
+    public static String PlayerOnly(){
+        return api.getMessage("PlayerOnly");
+    }
 }

@@ -55,7 +55,7 @@ public class InteractEntity implements Listener {
                     e.setCancelled(true);
                     ItemStack i = e.getPlayer().getInventory().getItemInMainHand();
                     ItemMeta im = i.getItemMeta();
-                    if(im.getDisplayName().equals(ChatColor.BLUE + "Spacesuit Helmet")){
+                    if(im.isUnbreakable()){
                         PersistentDataContainer data = im.getPersistentDataContainer();
                         float max = data.get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenMax"), PersistentDataType.FLOAT);
                         float remain = data.get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenRemaining"), PersistentDataType.FLOAT);

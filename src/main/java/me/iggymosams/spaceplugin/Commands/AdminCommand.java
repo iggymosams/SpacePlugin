@@ -32,9 +32,7 @@ public class AdminCommand implements CommandExecutor {
         if(sender instanceof Player) {
             Player p = (Player) sender;
             if (p.hasPermission(api.perm() + ".admin")) {
-                p.sendMessage(String.valueOf(args.length));
                 if (args.length == 0) {
-                    p.sendMessage("/admin tp <planet>");
 
                 } else {
                     if (args[0].equalsIgnoreCase("tp")) {
@@ -51,7 +49,7 @@ public class AdminCommand implements CommandExecutor {
                                 } else {
                                     Player target = Bukkit.getPlayerExact(args[2]);
                                     if (target == null) {
-                                        p.sendMessage(args[2] + " is not online");
+                                        p.sendMessage(api.notPlayer(args[2]));
                                     } else {
                                         target.teleport(new Location(Bukkit.getWorld("world"), 0, 80, 0));
                                         target.removePotionEffect(PotionEffectType.SLOW_FALLING);
@@ -71,7 +69,7 @@ public class AdminCommand implements CommandExecutor {
                                 } else {
                                     Player target = Bukkit.getPlayerExact(args[2]);
                                     if (target == null) {
-                                        p.sendMessage(args[2] + " is not online");
+                                        p.sendMessage(api.notPlayer(args[2]));
                                     } else {
                                         target.teleport(new Location(Bukkit.getWorld("moon"), 0, 80, 0));
                                         target.removePotionEffect(PotionEffectType.SLOW_FALLING);
@@ -97,7 +95,7 @@ public class AdminCommand implements CommandExecutor {
                             } else {
                                 Player target = Bukkit.getPlayerExact(args[1]);
                                 if (target == null) {
-                                    p.sendMessage(args[1] + " is not online");
+                                    p.sendMessage(api.notPlayer(args[2]));
                                 } else {
                                     if (oxygen.containsKey(target.getName())) {
                                         p.sendMessage(args[1] + " has " + oxygen.get(target.getName()).floatValue() + "oxygen remaining");
@@ -129,6 +127,9 @@ public class AdminCommand implements CommandExecutor {
             else {
                 api.noPermission(p);
             }
+        }
+        else{
+            System.out.println(api.PlayerOnly());
         }
         return true;
     }

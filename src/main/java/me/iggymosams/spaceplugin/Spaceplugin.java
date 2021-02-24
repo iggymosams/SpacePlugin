@@ -31,6 +31,8 @@ public final class Spaceplugin extends JavaPlugin {
 
     private static World voidworld;
 
+    private static World testWorld;
+
     final LinkedHashMap<String, Float> oxygen = new LinkedHashMap<>();
 
     public ArrayList<Player> gravityboots = new ArrayList<>();
@@ -85,6 +87,11 @@ public final class Spaceplugin extends JavaPlugin {
         solarSystem.environment(World.Environment.THE_END);
         solarSystem.generator(new EmptyWorldGenerator());
         voidworld = solarSystem.createWorld();
+
+        WorldCreator test = new WorldCreator("test");
+        test.generator(new TestGenerator(test.seed()));
+        testWorld = test.createWorld();
+
     }
     public void RegisterCommands(){
         getCommand("dimension").setExecutor(new TeleportToDimensionCommand(moon));
@@ -105,6 +112,7 @@ public final class Spaceplugin extends JavaPlugin {
         pm.registerEvents(new InteractEntity(), this);
         pm.registerEvents(new DeathEvent(), this);
         pm.registerEvents(new BlockPlace(), this);
+        pm.registerEvents(new ArrowHitEvent(), this);
     }
     private void CreateRecipies() {
         Bukkit.addRecipe(AdvanceRedstone());

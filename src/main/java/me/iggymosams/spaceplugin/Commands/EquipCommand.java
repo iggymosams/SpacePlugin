@@ -28,11 +28,13 @@ public class EquipCommand implements CommandExecutor {
             if(p.hasPermission(api.perm() + ".equip")) {
                 inv = Bukkit.createInventory(null, 54, "Equipment");
                 initializeItems();
-
                 p.openInventory(inv);
             }else {
                 api.noPermission(p);
             }
+        }
+        else{
+            System.out.println(api.PlayerOnly());
         }
         return true;
     }

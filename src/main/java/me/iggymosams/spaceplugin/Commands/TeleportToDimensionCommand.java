@@ -34,7 +34,7 @@ public class TeleportToDimensionCommand implements CommandExecutor {
             Player player = (Player) sender;
             sb.UpdateScoreboard(player);
             player.setGameMode(GameMode.CREATIVE);
-            player.teleport(new Location(dimension, 0, 80, 0));
+            player.teleport(new Location(Bukkit.getWorld("test"), 0, 80, 0));
 
             player.setGravity(true);
 

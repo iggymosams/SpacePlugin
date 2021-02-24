@@ -27,7 +27,7 @@ public class Scoreboard {
                 Objective o = b.registerNewObjective("Gold", "dummy", ChatColor.translateAlternateColorCodes('&', "&7&lThe Moon"));
                 o.setDisplaySlot(DisplaySlot.SIDEBAR);
                 if(oxygen.containsKey(p.getName())){
-                    Score gold = o.getScore(ChatColor.WHITE + "Oxygen: " + ChatColor.GOLD + oxygen.get(p.getName()).floatValue());
+                    Score gold = o.getScore(ChatColor.WHITE + "Oxygen: " + ChatColor.GOLD + Math.round(oxygen.get(p.getName()).floatValue()));
                     gold.setScore(1);
                 }else{
                     Score gold = o.getScore(ChatColor.WHITE + "Oxygen: " + ChatColor.GOLD + "0");

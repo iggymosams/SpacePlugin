@@ -29,7 +29,7 @@ public final class Oxygen {
                 for (Player p : Bukkit.getServer().getOnlinePlayers()){
                     if(oxygen.containsKey(p.getName())){
                         float o = oxygen.get(p.getName()).floatValue();
-                        if(p.getWorld().equals(moon)){
+                        if(p.getWorld().equals(Bukkit.getWorld("moon"))){
                             //sb.UpdateScoreboard(p);
                             if(p.getInventory().getHelmet() == null){
                                 o = 0;
