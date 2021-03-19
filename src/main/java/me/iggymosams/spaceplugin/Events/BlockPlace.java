@@ -18,7 +18,7 @@ public class BlockPlace implements Listener {
             if(e.getItemInHand().getItemMeta().getDisplayName().equals(ChatColor.LIGHT_PURPLE + "Oxygen Collector")){
                 e.setCancelled(true);
                 GenerateArmorStand(new Location(e.getBlock().getWorld(), e.getBlock().getLocation().getX() + 0.5F, e.getBlock().getLocation().getY(), e.getBlock().getLocation().getZ() + 0.5F), "&dOxygen Collector", false,true,false, true, null);
-                GenerateArmorStand(new Location(e.getBlock().getWorld(), e.getBlock().getLocation().getX() + 0.5F, e.getBlock().getLocation().getY() - 0.3F, e.getBlock().getLocation().getZ() + 0.5F), "&dnull/null", false,true,false, true, Material.SPONGE);
+                GenerateArmorStand(new Location(e.getBlock().getWorld(), e.getBlock().getLocation().getX() + 0.5F, e.getBlock().getLocation().getY() - 0.3F, e.getBlock().getLocation().getZ() + 0.5F), "&dnull/null", false,true,false, true, new ItemStack(Material.SPONGE));
                 PersistentDataContainer data = as.getPersistentDataContainer();
                 data.set(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollector"), PersistentDataType.INTEGER, 100);
                 data.set(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollectorCurrent"), PersistentDataType.FLOAT, 0F);
@@ -32,15 +32,15 @@ public class BlockPlace implements Listener {
             }
         }
     }
-    public void GenerateArmorStand(Location loc, String name, boolean visible, boolean small, boolean gravity, boolean NameVisible, Material mat){
+    public void GenerateArmorStand(Location loc, String name, boolean visible, boolean small, boolean gravity, boolean NameVisible, ItemStack item){
         as = loc.getWorld().spawn(loc, ArmorStand.class);
         as.setVisible(visible);
         as.setSmall(small);
         as.setGravity(gravity);
         as.setCustomNameVisible(NameVisible);
         as.setCustomName(ChatColor.translateAlternateColorCodes('&',name));
-        if (mat != null){
-            as.getEquipment().setHelmet(new ItemStack(mat));
+        if (item != null){
+            as.getEquipment().setHelmet(item);
         }
     }
 }
