@@ -35,12 +35,6 @@ public class SpaceSuitCommand implements CommandExecutor {
             if (p.hasPermission(api.perm() + ".suit")) {
                 Inventory i = p.getInventory();
 
-                ItemStack test = new ItemStack(Material.HONEYCOMB_BLOCK);
-                ItemMeta testMeta = test.getItemMeta();
-                testMeta.setDisplayName(ChatColor.LIGHT_PURPLE + "Oxygen Collector");
-                test.setItemMeta(testMeta);
-                i.addItem(test);
-
                 ItemStack helm = new ItemStack(Material.LEATHER_HELMET);
                 LeatherArmorMeta helmItemMeta = (LeatherArmorMeta) helm.getItemMeta();
                 PersistentDataContainer data = helmItemMeta.getPersistentDataContainer();
