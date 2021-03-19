@@ -16,7 +16,7 @@ public class BlockPlace implements Listener {
 
     @EventHandler
     public void onPlace(BlockPlaceEvent e){
-        if(e.getBlock().getType().equals(Material.HONEYCOMB_BLOCK)){
+        if(e.getBlock().getType().equals(Material.SPONGE)){
 
             if(e.getItemInHand().getItemMeta().getDisplayName().equals(ChatColor.LIGHT_PURPLE + "Oxygen Collector")){
 
@@ -33,7 +33,7 @@ public class BlockPlace implements Listener {
                 oc.setCustomName(ChatColor.LIGHT_PURPLE + "Oxygen Collector");
                 oc1 = (ArmorStand) loc.getWorld().spawn(new Location(loc.getWorld(), loc.getX() + 0.5F, loc.getY() - 1.2F, loc.getZ() + 0.5F), ArmorStand.class);
                 oc1.setVisible(false);
-                oc1.getEquipment().setHelmet(new ItemStack(Material.HONEYCOMB_BLOCK));
+                oc1.getEquipment().setHelmet(new ItemStack(Material.SPONGE));
                 PersistentDataContainer data = oc1.getPersistentDataContainer();
                 data.set(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollector"), PersistentDataType.INTEGER, 100);
                 data.set(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollectorCurrent"), PersistentDataType.FLOAT, 0F);
