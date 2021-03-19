@@ -16,7 +16,7 @@ public class BlockPlace implements Listener {
 
     @EventHandler
     public void onPlace(BlockPlaceEvent e){
-        if(e.getBlock().getType().equals(Material.SPONGE)){
+        if(e.getBlock().getType().equals(Material.HONEYCOMB_BLOCK)){
 
             if(e.getItemInHand().getItemMeta().getDisplayName().equals(ChatColor.LIGHT_PURPLE + "Oxygen Collector")){
 
