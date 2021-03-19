@@ -31,8 +31,6 @@ public final class Spaceplugin extends JavaPlugin {
 
     private static World voidworld;
 
-    private static World testWorld;
-
     final LinkedHashMap<String, Float> oxygen = new LinkedHashMap<>();
 
     public ArrayList<Player> gravityboots = new ArrayList<>();
@@ -88,9 +86,6 @@ public final class Spaceplugin extends JavaPlugin {
         solarSystem.generator(new EmptyWorldGenerator());
         voidworld = solarSystem.createWorld();
 
-        WorldCreator test = new WorldCreator("test");
-        test.generator(new TestGenerator(test.seed()));
-        testWorld = test.createWorld();
 
     }
     public void RegisterCommands(){
