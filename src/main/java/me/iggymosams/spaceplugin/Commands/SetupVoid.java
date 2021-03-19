@@ -18,10 +18,6 @@ import static org.bukkit.GameRule.DO_MOB_SPAWNING;
 public class SetupVoid implements CommandExecutor {
     ArmorStand as;
 
-    ArmorStand moonas;
-
-
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
