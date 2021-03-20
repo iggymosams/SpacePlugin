@@ -56,8 +56,7 @@ public class GUIclickEvent implements Listener {
                         item.setItemMeta(itemMeta);
                         p.getInventory().setHelmet(item);
                         p.getInventory().remove(e.getCurrentItem());
-                    }
-                    else if (e.getCurrentItem().getItemMeta().isUnbreakable() && e.getClickedInventory().getSize() == 54) {
+                    } else if (e.getCurrentItem().getItemMeta().isUnbreakable() && e.getClickedInventory().getSize() == 54) {
                         ItemStack i = e.getCurrentItem();
                         ItemMeta im = i.getItemMeta();
                         im.removeEnchant(Enchantment.BINDING_CURSE);
@@ -76,8 +75,7 @@ public class GUIclickEvent implements Listener {
                         p.getInventory().setHelmet(null);
                         e.getInventory().setItem(10, emptyHelm);
                     }
-                }
-                else if (e.getCurrentItem().getType().equals(Material.LEATHER_CHESTPLATE)) {
+                } else if (e.getCurrentItem().getType().equals(Material.LEATHER_CHESTPLATE)) {
                     if (e.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.BLUE + "Spacesuit ChestPlate") && e.getClickedInventory().getSize() != 54) {
                         e.getInventory().setItem(19, e.getCurrentItem());
                         ItemStack item = e.getCurrentItem();
@@ -102,8 +100,7 @@ public class GUIclickEvent implements Listener {
                         p.getInventory().setChestplate(null);
                         e.getInventory().setItem(19, emptyHelm);
                     }
-                }
-                else if (e.getCurrentItem().getType().equals(Material.LEATHER_LEGGINGS)) {
+                } else if (e.getCurrentItem().getType().equals(Material.LEATHER_LEGGINGS)) {
                     if (e.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.BLUE + "Spacesuit Leggins") && e.getClickedInventory().getSize() != 54) {
                         e.getInventory().setItem(28, e.getCurrentItem());
                         ItemStack item = e.getCurrentItem();
@@ -128,8 +125,7 @@ public class GUIclickEvent implements Listener {
                         p.getInventory().setLeggings(null);
                         e.getInventory().setItem(28, emptyHelm);
                     }
-                }
-                else if (e.getCurrentItem().getType().equals(Material.LEATHER_BOOTS)) {
+                } else if (e.getCurrentItem().getType().equals(Material.LEATHER_BOOTS)) {
                     if (e.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.BLUE + "Spacesuit Boots") && e.getClickedInventory().getSize() != 54) {
                         e.getInventory().setItem(37, e.getCurrentItem());
                         ItemStack item = e.getCurrentItem();
@@ -152,7 +148,7 @@ public class GUIclickEvent implements Listener {
                         emptyHelm.setItemMeta(emptyHelmMeta);
                         p.getInventory().setBoots(null);
                         e.getInventory().setItem(37, emptyHelm);
-                    }else if(e.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.BLUE + "Gravity Boots") && e.getClickedInventory().getSize() != 54){
+                    } else if (e.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.BLUE + "Gravity Boots") && e.getClickedInventory().getSize() != 54) {
                         e.getInventory().setItem(37, e.getCurrentItem());
                         ItemStack item = e.getCurrentItem();
                         ItemMeta itemMeta = item.getItemMeta();
@@ -162,7 +158,7 @@ public class GUIclickEvent implements Listener {
                         gravboots.add(p);
                         p.getInventory().setBoots(item);
                         p.getInventory().remove(e.getCurrentItem());
-                    }else if(e.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.BLUE + "Gravity Boots") && e.getClickedInventory().getSize() == 54){
+                    } else if (e.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.BLUE + "Gravity Boots") && e.getClickedInventory().getSize() == 54) {
                         ItemStack i = e.getCurrentItem();
                         ItemMeta im = i.getItemMeta();
                         im.removeEnchant(Enchantment.BINDING_CURSE);
@@ -177,32 +173,29 @@ public class GUIclickEvent implements Listener {
                         p.getInventory().setBoots(null);
                         e.getInventory().setItem(37, emptyHelm);
                     }
-                }
-                else{
+                } else {
                     return;
                 }
 
             }
 
-        }
-        else if (e.getView().getTitle().equals("Where to?")){
+        } else if (e.getView().getTitle().equals("Where to?")) {
             e.setCancelled(true);
-            if(e.getSlot() == 2){
+            if (e.getSlot() == 2) {
                 p.teleport(new Location(Bukkit.getWorld("world"), 0, 80, 0));
                 p.setAllowFlight(false);
                 p.setGravity(true);
                 sb.UpdateScoreboard(p);
             }
-            if(e.getSlot() == 4){
+            if (e.getSlot() == 4) {
                 p.teleport(new Location(moon, 0, 80, 0));
                 p.setAllowFlight(false);
                 p.setGravity(true);
                 sb.UpdateScoreboard(p);
             }
-        }
-        else if(e.getView().getTitle().equals("Oxygen Collector")){
+        } else if (e.getView().getTitle().equals("Oxygen Collector")) {
             e.setCancelled(true);
-            if(e.getSlot() == 26){
+            if (e.getSlot() == 26) {
 
             }
         }

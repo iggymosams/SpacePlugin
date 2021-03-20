@@ -30,7 +30,7 @@ public class SpaceSuitCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if(sender instanceof Player) {
+        if (sender instanceof Player) {
             Player p = (Player) sender;
             if (p.hasPermission(api.perm() + ".suit")) {
                 Inventory i = p.getInventory();
@@ -96,7 +96,7 @@ public class SpaceSuitCommand implements CommandExecutor {
                 gravboots.setItemMeta(gravbootsItemMeta);
                 p.sendMessage(String.valueOf(p.getWalkSpeed()));
                 i.addItem(helm, chest, leggs, boots, gravboots);
-            }else {
+            } else {
                 api.noPermission(p);
             }
         }

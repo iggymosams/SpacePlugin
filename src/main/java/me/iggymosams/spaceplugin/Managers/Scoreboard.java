@@ -18,7 +18,7 @@ public class Scoreboard {
 
     LinkedHashMap<String, Float> oxygen = Spaceplugin.getPlugin().getOxygen();
 
-    public void UpdateScoreboard(Player p){
+    public void UpdateScoreboard(Player p) {
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
             @Override
             public void run() {
@@ -26,16 +26,16 @@ public class Scoreboard {
                 org.bukkit.scoreboard.Scoreboard b = m.getNewScoreboard();
                 Objective o = b.registerNewObjective("Gold", "dummy", ChatColor.translateAlternateColorCodes('&', "&7&lThe Moon"));
                 o.setDisplaySlot(DisplaySlot.SIDEBAR);
-                if(oxygen.containsKey(p.getName())){
+                if (oxygen.containsKey(p.getName())) {
                     Score gold = o.getScore(ChatColor.WHITE + "Oxygen: " + ChatColor.GOLD + Math.round(oxygen.get(p.getName()).floatValue()));
                     gold.setScore(1);
-                }else{
+                } else {
                     Score gold = o.getScore(ChatColor.WHITE + "Oxygen: " + ChatColor.GOLD + "0");
                     gold.setScore(1);
                 }
                 p.setScoreboard(b);
             }
-        },0L,20L);
+        }, 0L, 20L);
 
     }
 }

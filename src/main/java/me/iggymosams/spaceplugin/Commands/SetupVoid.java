@@ -6,12 +6,9 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Pig;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
-import org.bukkit.util.EulerAngle;
 
 import static org.bukkit.GameRule.DO_MOB_SPAWNING;
 
@@ -37,24 +34,25 @@ public class SetupVoid implements CommandExecutor {
                 moonMeta.setDisplayName(ChatColor.GRAY + "Moon");
                 moon.setItemMeta(moonMeta);
 
-                GenerateArmorStand(new Location(w, 5.5, 80, 2.5), "&a&lEarth", false,false,true, true, earth);
-                GenerateArmorStand(new Location(w, 1.5, 80, 2.5), "&a&lMoon", false,false,true, true, moon);
+                GenerateArmorStand(new Location(w, 5.5, 80, 2.5), "&a&lEarth", false, false, true, true, earth);
+                GenerateArmorStand(new Location(w, 1.5, 80, 2.5), "&a&lMoon", false, false, true, true, moon);
 
                 w.getBlockAt(new Location(w, 0, 255, 0)).setType(Material.END_GATEWAY);
-            }else {
+            } else {
                 api.noPermission(p);
             }
         }
         return true;
     }
-    public void GenerateArmorStand(Location loc, String name, boolean visible, boolean small, boolean gravity, boolean NameVisible, ItemStack item){
+
+    public void GenerateArmorStand(Location loc, String name, boolean visible, boolean small, boolean gravity, boolean NameVisible, ItemStack item) {
         as = loc.getWorld().spawn(loc, ArmorStand.class);
         as.setVisible(visible);
         as.setSmall(small);
         as.setGravity(gravity);
         as.setCustomNameVisible(NameVisible);
-        as.setCustomName(ChatColor.translateAlternateColorCodes('&',name));
-        if (item != null){
+        as.setCustomName(ChatColor.translateAlternateColorCodes('&', name));
+        if (item != null) {
             as.getEquipment().setHelmet(item);
         }
     }

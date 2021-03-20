@@ -10,8 +10,6 @@ import java.util.Random;
 
 public class MoonGenerator extends ChunkGenerator {
 
-    SimplexOctaveGenerator simplexOctaveGenerator;
-
     public static MaterialGradient upperCavernMaterial;
 
     static {
@@ -27,9 +25,11 @@ public class MoonGenerator extends ChunkGenerator {
         upperCavernMaterial.nodes.add(new GradientNode(Material.GOLD_ORE, 0.2, 1.0, 1.0, 0.05));
     }
 
-    public MoonGenerator(long seed){
+    SimplexOctaveGenerator simplexOctaveGenerator;
+
+    public MoonGenerator(long seed) {
         simplexOctaveGenerator = new SimplexOctaveGenerator(seed, 4);
-        simplexOctaveGenerator.setScale((double) 1 /100);
+        simplexOctaveGenerator.setScale((double) 1 / 100);
     }
 
     public static int getHeight(SimplexOctaveGenerator generator, double x, double z, double freq, double amp, double baseHeight) {
@@ -51,9 +51,9 @@ public class MoonGenerator extends ChunkGenerator {
         double noise, depth;
 
         for (int X = 0; X < 16; X++) {
-            blockX = chunkX*16+X;
+            blockX = chunkX * 16 + X;
             for (int Z = 0; Z < 16; Z++) {
-                blockZ = chunkZ*16+Z;
+                blockZ = chunkZ * 16 + Z;
 
                 surfaceHeight = getHeight(generator, blockX, blockZ, 1D, 30D, 64D);
                 surfaceBottomHeight = getHeight(generator, blockX, blockZ, 0.5D, 5D, 0D);
@@ -66,16 +66,16 @@ public class MoonGenerator extends ChunkGenerator {
                 }
 
                 // Set surface
-                for (int y = surfaceHeight; y > surfaceHeight-4; y--)
+                for (int y = surfaceHeight; y > surfaceHeight - 4; y--)
                     chunk.setBlock(X, y, Z, Material.END_STONE);
 
                 // Set upper caverns
-                for (int y = surfaceHeight-4; y > 0; y--) {
-                    if(y >= surfaceHeight-6) {
+                for (int y = surfaceHeight - 4; y > 0; y--) {
+                    if (y >= surfaceHeight - 6) {
                         chunk.setBlock(X, y, Z, Material.STONE);
                     } else {
                         noise = generator.noise(blockX / 2.0, y, blockZ / 2.0, 0.0, 1.375, 4.0, true);
-                        if(noise >= 0.0) {
+                        if (noise >= 0.0) {
                             chunk.setBlock(X, y, Z,
                                     upperCavernMaterial.getMaterial(random, noise));
                         } else {

@@ -11,7 +11,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -29,7 +28,7 @@ public class AdminCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if(sender instanceof Player) {
+        if (sender instanceof Player) {
             Player p = (Player) sender;
             if (p.hasPermission(api.perm() + ".admin")) {
                 if (args.length == 0) {
@@ -37,7 +36,7 @@ public class AdminCommand implements CommandExecutor {
                 } else {
                     if (args[0].equalsIgnoreCase("tp")) {
                         //teleportcommand
-                        if(p.hasPermission(api.perm() + "admin.tp")) {
+                        if (p.hasPermission(api.perm() + "admin.tp")) {
                             if (args[1].equalsIgnoreCase("earth")) {
                                 if (args.length == 2) {
                                     //Teleport Sender
@@ -80,11 +79,11 @@ public class AdminCommand implements CommandExecutor {
                                     }
                                 }
                             }
-                        }else {
+                        } else {
                             api.noPermission(p);
                         }
                     } else if (args[0].equalsIgnoreCase("oxygen")) {
-                        if(p.hasPermission(api.perm() + ".admin.oxygen")) {
+                        if (p.hasPermission(api.perm() + ".admin.oxygen")) {
                             if (args.length == 1) {
                                 if (oxygen.containsKey(p.getName())) {
                                     p.sendMessage("You have " + oxygen.get(p.getName()).floatValue() + " oxygen remaining");
@@ -105,7 +104,7 @@ public class AdminCommand implements CommandExecutor {
 
                                 }
                             }
-                        }else {
+                        } else {
                             api.noPermission(p);
                         }
                     } else if (args[0].equalsIgnoreCase("refil")) {
@@ -118,17 +117,15 @@ public class AdminCommand implements CommandExecutor {
                                 im.setLore(Arrays.asList(ChatColor.WHITE + "" + data.get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenRemaining"), PersistentDataType.FLOAT) + "/" + data.get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenMax"), PersistentDataType.FLOAT)));
                                 i.setItemMeta(im);
                             }
-                        }else {
+                        } else {
                             api.noPermission(p);
                         }
                     }
                 }
-            }
-            else {
+            } else {
                 api.noPermission(p);
             }
-        }
-        else{
+        } else {
             System.out.println(api.PlayerOnly());
         }
         return true;

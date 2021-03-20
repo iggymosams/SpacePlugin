@@ -20,37 +20,38 @@ public class EquipCommand implements CommandExecutor {
     Inventory inv;
 
     Player p;
+    Plugin plugin = Spaceplugin.getPlugin();
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if(sender instanceof Player){
+        if (sender instanceof Player) {
             p = (Player) sender;
-            if(p.hasPermission(api.perm() + ".equip")) {
+            if (p.hasPermission(api.perm() + ".equip")) {
                 inv = Bukkit.createInventory(null, 54, "Equipment");
                 initializeItems();
                 p.openInventory(inv);
-            }else {
+            } else {
                 api.noPermission(p);
             }
-        }
-        else{
+        } else {
             System.out.println(api.PlayerOnly());
         }
         return true;
     }
-    public void initializeItems(){
-        if(p.getInventory().getHelmet() == null){
+
+    public void initializeItems() {
+        if (p.getInventory().getHelmet() == null) {
             ItemStack emptyHelm = new ItemStack(Material.LEATHER_HELMET);
             LeatherArmorMeta emptyHelmMeta = (LeatherArmorMeta) emptyHelm.getItemMeta();
             emptyHelmMeta.setDisplayName(ChatColor.DARK_GRAY + "Empty");
             emptyHelmMeta.setColor(Color.BLACK);
             emptyHelm.setItemMeta(emptyHelmMeta);
             inv.setItem(10, emptyHelm);
-        }else{
-            if(p.getInventory().getHelmet().getType().equals(Material.LEATHER_HELMET)) {
+        } else {
+            if (p.getInventory().getHelmet().getType().equals(Material.LEATHER_HELMET)) {
                 ItemStack setHelm = p.getInventory().getHelmet();
                 inv.setItem(10, setHelm);
-            }else{
+            } else {
                 ItemStack emptyHelm = new ItemStack(Material.LEATHER_HELMET);
                 LeatherArmorMeta emptyHelmMeta = (LeatherArmorMeta) emptyHelm.getItemMeta();
                 emptyHelmMeta.setDisplayName(ChatColor.DARK_GRAY + "Empty");
@@ -61,19 +62,19 @@ public class EquipCommand implements CommandExecutor {
         }
 
 
-        if(p.getInventory().getChestplate() == null){
+        if (p.getInventory().getChestplate() == null) {
             ItemStack emptyChest = new ItemStack(Material.LEATHER_CHESTPLATE);
             LeatherArmorMeta emptyChestMeta = (LeatherArmorMeta) emptyChest.getItemMeta();
             emptyChestMeta.setDisplayName(ChatColor.DARK_GRAY + "Empty");
             emptyChestMeta.setColor(Color.BLACK);
             emptyChest.setItemMeta(emptyChestMeta);
             inv.setItem(19, emptyChest);
-        }else{
+        } else {
 
-            if(p.getInventory().getChestplate().getType().equals(Material.LEATHER_CHESTPLATE)) {
+            if (p.getInventory().getChestplate().getType().equals(Material.LEATHER_CHESTPLATE)) {
                 inv.setItem(19, p.getInventory().getChestplate());
 
-            }else{
+            } else {
                 ItemStack emptyChest = new ItemStack(Material.LEATHER_CHESTPLATE);
                 LeatherArmorMeta emptyChestMeta = (LeatherArmorMeta) emptyChest.getItemMeta();
                 emptyChestMeta.setDisplayName(ChatColor.DARK_GRAY + "Empty");
@@ -83,18 +84,18 @@ public class EquipCommand implements CommandExecutor {
             }
         }
 
-        if(p.getInventory().getLeggings() == null){
+        if (p.getInventory().getLeggings() == null) {
             ItemStack emptyHelm = new ItemStack(Material.LEATHER_LEGGINGS);
             LeatherArmorMeta emptyHelmMeta = (LeatherArmorMeta) emptyHelm.getItemMeta();
             emptyHelmMeta.setDisplayName(ChatColor.DARK_GRAY + "Empty");
             emptyHelmMeta.setColor(Color.BLACK);
             emptyHelm.setItemMeta(emptyHelmMeta);
             inv.setItem(28, emptyHelm);
-        }else{
-            if(p.getInventory().getLeggings().getType().equals(Material.LEATHER_LEGGINGS)) {
+        } else {
+            if (p.getInventory().getLeggings().getType().equals(Material.LEATHER_LEGGINGS)) {
                 ItemStack setHelm = p.getInventory().getLeggings();
                 inv.setItem(28, setHelm);
-            }else{
+            } else {
                 ItemStack emptyHelm = new ItemStack(Material.LEATHER_LEGGINGS);
                 LeatherArmorMeta emptyHelmMeta = (LeatherArmorMeta) emptyHelm.getItemMeta();
                 emptyHelmMeta.setDisplayName(ChatColor.DARK_GRAY + "Empty");
@@ -104,18 +105,18 @@ public class EquipCommand implements CommandExecutor {
             }
         }
 
-        if(p.getInventory().getBoots() == null){
+        if (p.getInventory().getBoots() == null) {
             ItemStack emptyHelm = new ItemStack(Material.LEATHER_BOOTS);
             LeatherArmorMeta emptyHelmMeta = (LeatherArmorMeta) emptyHelm.getItemMeta();
             emptyHelmMeta.setDisplayName(ChatColor.DARK_GRAY + "Empty");
             emptyHelmMeta.setColor(Color.BLACK);
             emptyHelm.setItemMeta(emptyHelmMeta);
             inv.setItem(37, emptyHelm);
-        }else{
-            if(p.getInventory().getBoots().getType().equals(Material.LEATHER_BOOTS)) {
+        } else {
+            if (p.getInventory().getBoots().getType().equals(Material.LEATHER_BOOTS)) {
                 ItemStack setHelm = p.getInventory().getBoots();
                 inv.setItem(37, setHelm);
-            }else{
+            } else {
                 ItemStack emptyHelm = new ItemStack(Material.LEATHER_BOOTS);
                 LeatherArmorMeta emptyHelmMeta = (LeatherArmorMeta) emptyHelm.getItemMeta();
                 emptyHelmMeta.setDisplayName(ChatColor.DARK_GRAY + "Empty");
@@ -131,5 +132,4 @@ public class EquipCommand implements CommandExecutor {
         inv.setItem(0, rocket);
 
     }
-    Plugin plugin = Spaceplugin.getPlugin();
 }

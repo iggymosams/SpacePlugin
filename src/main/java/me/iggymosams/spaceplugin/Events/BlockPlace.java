@@ -1,7 +1,10 @@
 package me.iggymosams.spaceplugin.Events;
 
 import me.iggymosams.spaceplugin.Spaceplugin;
-import org.bukkit.*;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,13 +15,14 @@ import org.bukkit.persistence.PersistentDataType;
 
 public class BlockPlace implements Listener {
     ArmorStand as;
+
     @EventHandler
-    public void onPlace(BlockPlaceEvent e){
-        if(e.getBlock().getType().equals(Material.SPONGE)){
-            if(e.getItemInHand().getItemMeta().getDisplayName().equals(ChatColor.LIGHT_PURPLE + "Oxygen Collector")){
+    public void onPlace(BlockPlaceEvent e) {
+        if (e.getBlock().getType().equals(Material.SPONGE)) {
+            if (e.getItemInHand().getItemMeta().getDisplayName().equals(ChatColor.LIGHT_PURPLE + "Oxygen Collector")) {
                 e.setCancelled(true);
-                GenerateArmorStand(new Location(e.getBlock().getWorld(), e.getBlock().getLocation().getX() + 0.5F, e.getBlock().getLocation().getY(), e.getBlock().getLocation().getZ() + 0.5F), "&dOxygen Collector", false,true,false, true, null);
-                GenerateArmorStand(new Location(e.getBlock().getWorld(), e.getBlock().getLocation().getX() + 0.5F, e.getBlock().getLocation().getY() - 0.3F, e.getBlock().getLocation().getZ() + 0.5F), "&dnull/null", false,true,false, true, new ItemStack(Material.SPONGE));
+                GenerateArmorStand(new Location(e.getBlock().getWorld(), e.getBlock().getLocation().getX() + 0.5F, e.getBlock().getLocation().getY(), e.getBlock().getLocation().getZ() + 0.5F), "&dOxygen Collector", false, true, false, true, null);
+                GenerateArmorStand(new Location(e.getBlock().getWorld(), e.getBlock().getLocation().getX() + 0.5F, e.getBlock().getLocation().getY() - 0.3F, e.getBlock().getLocation().getZ() + 0.5F), "&dnull/null", false, true, false, true, new ItemStack(Material.SPONGE));
                 PersistentDataContainer data = as.getPersistentDataContainer();
                 data.set(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollector"), PersistentDataType.INTEGER, 100);
                 data.set(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenCollectorCurrent"), PersistentDataType.FLOAT, 0F);
@@ -26,20 +30,21 @@ public class BlockPlace implements Listener {
                 e.getPlayer().getInventory().removeItem(e.getItemInHand());
             }
         }
-        if(e.getBlock().getType().equals(Material.COMPARATOR)) {
+        if (e.getBlock().getType().equals(Material.COMPARATOR)) {
             if (e.getItemInHand().getItemMeta().getDisplayName().equals(ChatColor.RED + "Advance Component")) {
                 e.setCancelled(true);
             }
         }
     }
-    public void GenerateArmorStand(Location loc, String name, boolean visible, boolean small, boolean gravity, boolean NameVisible, ItemStack item){
+
+    public void GenerateArmorStand(Location loc, String name, boolean visible, boolean small, boolean gravity, boolean NameVisible, ItemStack item) {
         as = loc.getWorld().spawn(loc, ArmorStand.class);
         as.setVisible(visible);
         as.setSmall(small);
         as.setGravity(gravity);
         as.setCustomNameVisible(NameVisible);
-        as.setCustomName(ChatColor.translateAlternateColorCodes('&',name));
-        if (item != null){
+        as.setCustomName(ChatColor.translateAlternateColorCodes('&', name));
+        if (item != null) {
             as.getEquipment().setHelmet(item);
         }
     }

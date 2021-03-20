@@ -2,14 +2,15 @@ package me.iggymosams.spaceplugin.Commands;
 
 import me.iggymosams.spaceplugin.Spaceplugin;
 import me.iggymosams.spaceplugin.api;
-import org.bukkit.*;
+import org.bukkit.Difficulty;
+import org.bukkit.GameMode;
+import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.util.Vector;
 
 
 public class VoidTPCommand implements CommandExecutor {
@@ -20,7 +21,7 @@ public class VoidTPCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if(sender instanceof Player) {
+        if (sender instanceof Player) {
             Player p = (Player) sender;
             if (p.hasPermission(api.perm() + ".void")) {
                 p.setGameMode(GameMode.ADVENTURE);
@@ -28,7 +29,7 @@ public class VoidTPCommand implements CommandExecutor {
                 World w = p.getWorld();
                 w.setDifficulty(Difficulty.PEACEFUL);
                 p.setWalkSpeed(0f);
-            }else {
+            } else {
                 api.noPermission(p);
             }
         }

@@ -22,29 +22,29 @@ public final class Oxygen {
 
     World moon = Spaceplugin.getMoon();
 
-    public void CheckOxygen(){
+    public void CheckOxygen() {
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
             @Override
             public void run() {
-                for (Player p : Bukkit.getServer().getOnlinePlayers()){
-                    if(oxygen.containsKey(p.getName())){
+                for (Player p : Bukkit.getServer().getOnlinePlayers()) {
+                    if (oxygen.containsKey(p.getName())) {
                         float o = oxygen.get(p.getName()).floatValue();
-                        if(p.getWorld().equals(Bukkit.getWorld("moon"))){
+                        if (p.getWorld().equals(Bukkit.getWorld("moon"))) {
                             //sb.UpdateScoreboard(p);
-                            if(p.getInventory().getHelmet() == null){
+                            if (p.getInventory().getHelmet() == null) {
                                 o = 0;
                             }
-                            if(o > 0) {
+                            if (o > 0) {
                                 oxygen.put(p.getName(), o - 1F);
 
                                 ItemStack itemStack = p.getInventory().getHelmet();
                                 ItemMeta itemMeta = itemStack.getItemMeta();
                                 itemMeta.setLore(Arrays.asList(ChatColor.WHITE + "" + o + "/" + itemMeta.getPersistentDataContainer().get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenMax"), PersistentDataType.FLOAT)));
                                 itemStack.setItemMeta(itemMeta);
-                            }else{
+                            } else {
                                 o = 0;
                                 p.damage(3);
-                                if(p.getInventory().getHelmet() != null){
+                                if (p.getInventory().getHelmet() != null) {
                                     ItemStack itemStack = p.getInventory().getHelmet();
                                     ItemMeta itemMeta = itemStack.getItemMeta();
                                     itemMeta.setLore(Arrays.asList(ChatColor.WHITE + "" + o + "/" + itemMeta.getPersistentDataContainer().get(new NamespacedKey(Spaceplugin.getPlugin(), "oxygenMax"), PersistentDataType.FLOAT)));
@@ -56,7 +56,7 @@ public final class Oxygen {
                     }
                 }
             }
-        },0L,20L);
+        }, 0L, 20L);
 
     }
 }

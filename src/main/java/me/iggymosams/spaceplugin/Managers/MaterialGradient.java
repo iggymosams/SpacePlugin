@@ -25,10 +25,10 @@ public class MaterialGradient {
         double lastStep = 0;
         double selection = r.nextDouble();
 
-        for(Pair<Double, Material> pair : materials) {
+        for (Pair<Double, Material> pair : materials) {
             double nextStep = lastStep + (pair.x / total);
 
-            if(selection > lastStep && selection <= nextStep) {
+            if (selection > lastStep && selection <= nextStep) {
                 return pair.y;
             } else {
                 lastStep = nextStep;

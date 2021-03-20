@@ -20,9 +20,9 @@ public class DeathEvent implements Listener {
     LinkedHashMap<String, Float> oxygen = Spaceplugin.getPlugin().getOxygen();
 
     @EventHandler
-    public void onDeath(PlayerDeathEvent e){
+    public void onDeath(PlayerDeathEvent e) {
         Player p = e.getEntity();
-        if(oxygen.containsKey(p.getName())){
+        if (oxygen.containsKey(p.getName())) {
             ItemStack i = p.getInventory().getHelmet();
             ItemMeta im = i.getItemMeta();
             PersistentDataContainer data = im.getPersistentDataContainer();
