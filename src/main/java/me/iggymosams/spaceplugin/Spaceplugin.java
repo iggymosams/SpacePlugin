@@ -24,19 +24,12 @@ import java.util.LinkedHashMap;
 public final class Spaceplugin extends JavaPlugin {
 
     private static ProtocolManager protocolManager;
-
     private static Spaceplugin plugin;
-
     private static World moon;
-
     private static World voidworld;
-
     final LinkedHashMap<String, Float> oxygen = new LinkedHashMap<>();
-
     public ArrayList<Player> gravityboots = new ArrayList<>();
-
     public ArrayList<ArmorStand> oxygenCollectors = new ArrayList<>();
-
     public static String permissionmsg = "spaceplugin";
 
     @Override
@@ -424,19 +417,15 @@ public final class Spaceplugin extends JavaPlugin {
     public LinkedHashMap<String, Float> getOxygen() {
         return oxygen;
     }
-
     public static World getVoidworld() {
         return voidworld;
     }
-
     public static ProtocolManager getProtocolManager() {
         return protocolManager;
     }
-
     public static World getMoon() {
         return moon;
     }
-
     public static Spaceplugin getPlugin() {
         return plugin;
     }

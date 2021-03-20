@@ -3,13 +3,14 @@
 ----
 #To Do
 - [x] Add Tiered Helmet Compatibility
-- [ ] Add Caves to moon
+- [x] Add Caves to moon (Needs to be Inproved)
 - [ ] Add Space Station
 - [X] Arrows Peirce Space Suit
 - [ ] Add messages to the message config for everything
 - [ ] Add more commands
 - [ ] Add Gravity Boots Crafting
-- [ ] 
+- [ ] Clean Up Code
+- [ ] Add Craters to the moon
 
 #Crafting
 
