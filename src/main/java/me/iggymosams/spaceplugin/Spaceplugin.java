@@ -15,8 +15,7 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.PluginManager;
-import org.bukkit.plugin.java
-        .JavaPlugin;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -71,6 +70,7 @@ public final class Spaceplugin extends JavaPlugin {
     public void GenerateWorlds(){
         WorldCreator moonCreator = new WorldCreator("moon");
         moonCreator.generator(new MoonGenerator(moonCreator.seed()));
+        moonCreator.environment(World.Environment.THE_END);
         moon = moonCreator.createWorld();
 
         WorldCreator solarSystem = new WorldCreator("void");
@@ -100,6 +100,7 @@ public final class Spaceplugin extends JavaPlugin {
         pm.registerEvents(new DeathEvent(), this);
         pm.registerEvents(new BlockPlace(), this);
         pm.registerEvents(new ArrowHitEvent(), this);
+        pm.registerEvents(new DropEvent(), this);
     }
     private void CreateRecipies() {
         Bukkit.addRecipe(AdvanceRedstone());
