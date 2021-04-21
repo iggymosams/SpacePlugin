@@ -29,7 +29,13 @@ public class InteractEntity implements Listener {
                 p.setWalkSpeed(0.2F);
                 p.setGameMode(GameMode.SURVIVAL);
                 if (e.getRightClicked().getName().equals(ChatColor.GREEN + "" + ChatColor.BOLD + "Earth")) {
-                    p.teleport(new Location(Bukkit.getWorld("world"), 0, 80, 0));
+                    if(p.getBedSpawnLocation() != null){
+                        p.sendMessage(String.valueOf(p.getBedSpawnLocation()));
+                        p.teleport(p.getBedSpawnLocation());
+                    }else{
+                        p.teleport(new Location(Bukkit.getWorld("world"), 0, 80, 0));
+                    }
+
                     p.removePotionEffect(PotionEffectType.SLOW_FALLING);
                     p.removePotionEffect(PotionEffectType.JUMP);
                     p.setAllowFlight(false);
