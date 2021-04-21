@@ -35,7 +35,7 @@ public class SetupVoid implements CommandExecutor {
                 moon.setItemMeta(moonMeta);
 
                 GenerateArmorStand(new Location(w, 5.5, 80, 2.5), "&a&lEarth", false, false, true, true, earth);
-                GenerateArmorStand(new Location(w, 1.5, 80, 2.5), "&a&lMoon", false, false, true, true, moon);
+                GenerateArmorStand(new Location(w, 1.5, 80, 2.5), "&7&lMoon", false, false, true, true, moon);
 
                 w.getBlockAt(new Location(w, 0, 255, 0)).setType(Material.END_GATEWAY);
             } else {
