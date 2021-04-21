@@ -78,11 +78,33 @@ public class AdminCommand implements CommandExecutor {
                                         sb.UpdateScoreboard(p);
                                     }
                                 }
-                            }
+                            }else if (args[1].equalsIgnoreCase("void")) {
+                                if (args.length == 2) {
+                                    //Teleport Sender
+                                    p.teleport(new Location(Bukkit.getWorld("void"), 0, 80, 0));
+                                    p.removePotionEffect(PotionEffectType.SLOW_FALLING);
+                                    p.removePotionEffect(PotionEffectType.JUMP);
+                                    p.setAllowFlight(false);
+                                    p.setGravity(true);
+                                } else {
+                                    Player target = Bukkit.getPlayerExact(args[2]);
+                                    if (target == null) {
+                                        p.sendMessage(api.notPlayer(args[2]));
+                                    } else {
+                                        target.teleport(new Location(Bukkit.getWorld("void"), 0, 80, 0));
+                                        target.removePotionEffect(PotionEffectType.SLOW_FALLING);
+                                        target.removePotionEffect(PotionEffectType.JUMP);
+                                        target.setAllowFlight(false);
+                                        target.setGravity(true);
+                                        sb.UpdateScoreboard(p);
+                                    }
+                                }
+                                }
                         } else {
                             api.noPermission(p);
                         }
-                    } else if (args[0].equalsIgnoreCase("oxygen")) {
+                    }
+                    else if (args[0].equalsIgnoreCase("oxygen")) {
                         if (p.hasPermission(api.perm() + ".admin.oxygen")) {
                             if (args.length == 1) {
                                 if (oxygen.containsKey(p.getName())) {
@@ -107,7 +129,8 @@ public class AdminCommand implements CommandExecutor {
                         } else {
                             api.noPermission(p);
                         }
-                    } else if (args[0].equalsIgnoreCase("refil")) {
+                    }
+                    else if (args[0].equalsIgnoreCase("refil")) {
                         if (p.hasPermission(api.perm() + ".admin.refil")) {
                             ItemStack i = p.getInventory().getItemInMainHand();
                             ItemMeta im = i.getItemMeta();
